@@ -1,0 +1,138 @@
+//front commen ui
+
+$titlePadding : 15px 10px;
+$titleSize : 28px;
+$titleWeight : 800;
+$subTitleSize : 24px;
+$subTitleWeight : 600;
+
+$letterspacing : 1px;
+
+//front Ui pingifbulk light
+
+$primaryLight : #d3d8db;
+$colorLight : black;
+$headerLight : #ebf4fa;
+
+//front ui pingifbulk dark
+
+$primaryDark : #314c5e;
+$colorDark : #fff;
+$headerDark : #0c2536;
+
+//common color
+
+$modeColor : #979a9c;
+
+body{
+    margin : 0px;
+    padding : 0px;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin : 0px;
+    padding : 0px;
+}
+
+//@light mode
+
+.App-light{
+    width : 100%;
+    height : 500px;
+    background-color: $primaryLight;
+    color : $colorLight;
+
+    .Header{
+        width : 100%;
+        height : 60px;
+        background-color : $headerLight;
+        display: flex;
+
+        .startButton{
+            padding : 4px 20px 6px 20px;
+            text-align: center;
+            text-transform: uppercase;
+            vertical-align: center;
+            border-radius: 20px;
+            height : 35px;
+            margin: 13px 10px;
+            letter-spacing: $letterspacing;
+            color : $colorLight;
+            border : 1px solid $colorLight;
+            background-color : $headerLight;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .startButton:hover{
+            color : $colorDark;
+            border : 1px solid $colorDark;
+            background-color : $headerDark;
+        }
+    }
+}
+
+
+
+//@dark mode
+
+.App-dark{
+    width : 100%;
+    height : 500px;
+    background-color: $primaryDark;
+    color : $colorDark;
+
+    .Header{
+        width : 100%;
+        height : 60px;
+        background-color : $headerDark;
+
+        .startButton{
+            padding : 4px 20px 6px 20px;
+            text-align: center;
+            text-transform: uppercase;
+            vertical-align: center;
+            border-radius: 20px;
+            height : 35px;
+            margin: 13px 10px;
+            letter-spacing: $letterspacing;
+            text-decoration: none;
+            color : $colorDark;
+            border : 1px solid $colorDark;
+            background-color : $headerDark;
+            outline: none;
+            float:right;
+        }
+
+        .startButton:hover{
+            color : $colorLight;
+            border : 1px solid $colorLight;
+            background-color : $headerLight;
+        }
+    }
+}
+
+//common 
+
+.logoTitle{
+    padding : 13px 10px;
+    font-size: $titleSize;
+    font-weight: $titleWeight;
+    letter-spacing: $letterspacing;
+}
+
+.secondColumn{
+
+    margin-top: 10px;
+    display : flex;
+    .modeView{
+        padding-top: 20px;
+        font-size : 14px;
+        letter-spacing: $letterspacing;
+        color : $modeColor;
+        cursor: pointer; 
+        margin : 0px 15px;
+        margin-left: 40%;
+    }
+}
+
