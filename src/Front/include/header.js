@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
 
@@ -8,11 +9,16 @@ const Header = (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
-                        <h1 className="logoTitle"> Pingifbulk</h1>
+                        <h1 > 
+                            <Link to="" className="logoTitle">
+                              Pingifbulk
+                            </Link>
+                        </h1>
                     </div> 
                     <div className="col-md-6 secondColumn">
                         <p className="modeView" onClick={ props.changeHandler } >Change Mode</p>
-                        <a href="" className="startButton">Get Started</a>
+                        <Link to="" className="homeBack">HOME</Link>
+                        <Link to="signin" className="startButton">Get Started</Link>
                     </div> 
                 </div>
             </div>
