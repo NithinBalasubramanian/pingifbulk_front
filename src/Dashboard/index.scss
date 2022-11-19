@@ -13,12 +13,44 @@
     min-height: 90vh;
 }
 
+.sidebarMain {
+    width: 20%;
+    min-height: 90vh;
+    margin-top: 8px;
+    padding-top: 10px;
+
+    a {
+        text-decoration: none;
+    }
+
+    .sideBarMenu {
+        text-decoration: none;
+        width : 100%;
+        padding: 10px 8px;
+        cursor: pointer;
+        margin-top: 2px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+}
+
 .App-light {
     .sidebarMain {
-        width: 20%;
-        min-height: 90vh;
         background-color: $headerLight;
-        margin-top: 8px;
+        a {
+            color : $colorLight;
+        }
+
+        .sideBarMenu {
+
+            .active {
+                background-color: $contentArea;
+            }
+
+            &:hover {
+                background-color: $contentArea;
+            }
+        }
     }
 
     .mainContent {
@@ -28,10 +60,21 @@
 
 .App-dark{
     .sidebarMain {
-        width: 20%;
-        min-height: 90vh;
         background-color: $headerDark;
-        margin-top: 8px;
+        a {
+            color : $colorDark;
+        }
+
+        .sideBarMenu {
+
+            .active {
+                background-color: $contentAreaDark;
+            }
+
+            &:hover {
+                background-color: $contentAreaDark;
+            }
+        }
     }
 
     .mainContent {
