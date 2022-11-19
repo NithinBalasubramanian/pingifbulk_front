@@ -1,11 +1,11 @@
-import './App.scss';
+import './App.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React , { useEffect, useState } from 'react'
-import { useSelector , useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Mode } from './action/index'
-import {  BrowserRouter , Switch , Route , Redirect} from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-//pages
+// pages
 
 import Header from './Front/include/header'
 import Footer from './Front/include/footer'
@@ -13,33 +13,32 @@ import Footer from './Front/include/footer'
 import Login from './Front/login'
 import Signup from './Front/signUp'
 
-//dashboard 
+// dashboard
 
 import DashboardController from './Dashboard/DashboardController'
 
 const App = () => {
+  const dispatch = useDispatch()
 
-  let dispatch = useDispatch();
+  const stateMode = useSelector(state => state.mode)
 
-  let stateMode = useSelector(state => state.mode);
+  const [mode, setMode] = useState(stateMode)
 
-  let [ mode , setMode ]  = useState(stateMode);
-
-  let [ logState , setlogState ] = useState(false);
+  const [logState, setlogState] = useState(false)
 
   const changeMode = () => {
-    dispatch(Mode);
-    setMode(!mode);
+    dispatch(Mode)
+    setMode(!mode)
   }
 
-  useEffect(()=>{
-    if(sessionStorage.getItem("userData")){ 
-      setlogState(true);
+  useEffect(() => {
+    if (sessionStorage.getItem('userData')) {
+      setlogState(true)
     }
-  },[]);
+  }, [])
 
   return (
-    <div  className={ mode ? 'App-dark'  : 'App-light' } >
+    <div className={ mode ? 'App-dark' : 'App-light' } >
       <BrowserRouter>
         <Header changeHandler={ changeMode } modeState={ mode } />
         <Switch>
@@ -51,15 +50,15 @@ const App = () => {
             </div>
           </Route>
           <Route path='/signin'>
-            {(logState) ? 
-              <Redirect to="/Dashboard" /> : 
-              <Login /> 
+            {(logState)
+              ? <Redirect to="/Dashboard" />
+              : <Login />
             }
           </Route>
           <Route path='/signup'>
-          {(logState) ? 
-              <Redirect to="/Dashboard" /> : 
-              <Signup />
+          {(logState)
+            ? <Redirect to="/Dashboard" />
+            : <Signup />
             }
           </Route>
           <Route path='/Dashboard'>
@@ -69,7 +68,7 @@ const App = () => {
         <Footer />
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
