@@ -1,0 +1,15 @@
+@import '../App.scss';
+
+.notFound {
+    min-height: 88vh;
+    width : 100%;
+    text-align: center;
+
+    h1 {
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        vertical-align: center;
+        padding : 40vh;
+    }
+}
