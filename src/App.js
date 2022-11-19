@@ -16,6 +16,7 @@ import Signup from './Front/signUp'
 // dashboard
 
 import DashboardController from './Dashboard/DashboardController'
+import NotFound from './Component/NotFound'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -63,6 +64,9 @@ const App = () => {
           </Route>
           <Route path='/Dashboard'>
             <DashboardController />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
         <Footer />
