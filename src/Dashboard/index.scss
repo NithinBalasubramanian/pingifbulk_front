@@ -1,0 +1,40 @@
+@import '../App.scss';
+
+.Dashboard {
+    width : 100%;
+    display: flex;
+    min-height: 90vh;
+}
+
+.mainContent {
+    width: 80%;
+    margin: 8px 8px;
+    border-radius: 4px;
+    min-height: 90vh;
+}
+
+.App-light {
+    .sidebarMain {
+        width: 20%;
+        min-height: 90vh;
+        background-color: $headerLight;
+        margin-top: 8px;
+    }
+
+    .mainContent {
+        background-color: $contentArea;
+    }
+}
+
+.App-dark{
+    .sidebarMain {
+        width: 20%;
+        min-height: 90vh;
+        background-color: $headerDark;
+        margin-top: 8px;
+    }
+
+    .mainContent {
+        background-color: $contentAreaDark;
+    }
+}

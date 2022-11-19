@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Header = (props) => {
   return (
         <div className='Header'>
-            <div className="container">
+            <div className="headCont">
                 <div className="row">
                     <div className="col-md-4">
                         <h1>
@@ -17,7 +17,9 @@ const Header = (props) => {
                     <div className="col-md-8 secondColumn">
                         <p className="modeView" onClick={ props?.changeHandler } >Change Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        <Link to="signin" className="startButton">Get Started</Link>
+                        {!sessionStorage.getItem('userData') &&
+                            <Link to="signin" className="startButton">Get Started</Link>
+                        }
                     </div>
                 </div>
             </div>
