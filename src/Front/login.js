@@ -1,54 +1,52 @@
-import React , { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 
 const Login = () => {
+  const history = useHistory()
 
+  const initialState = {
+    email: '',
+    password: ''
+  }
 
-    let history = useHistory();
-    
-    let initialState = {
-        'email' : '',
-        'password' : '',
-    } 
+  const [data, setData] = useState(initialState)
 
-    let [ data , setData ] = useState(initialState);
+  const changeState = (e) => {
+    setData(prevstate => {
+      return { ...prevstate, [e.target.name]: e.target.value }
+    })
+  }
 
-    const changeState = (e) => {
-        setData(prevstate => { 
-            return {...prevstate , [e.target.name] : e.target.value }
-        });
-    }
+  const login = async (e) => {
+    e.preventDefault()
 
-    const login = (e) => {
+    // const datapayload = {
+    //     'email' : data.email,
+    //     'password' : data.password
+    // }
 
-        e.preventDefault();
+    // await axios.post('http://pingifbulk.infonixmedia.in/Api/login/users',datapayload,{
+    //     headers : {
+    //         'Content-Type' : 'multipart/form-data'
+    //     }
+    // })
+    // .then(res=>{
+    //     setData(initialState);
+    //     if(res.data === 1){
+    //         history.push("/Dashboard");
+    //     }else{
+    //         alert('Password not match');
+    //     }
+    // })
+    // .catch(err=>{
+    //     console.log(err);
+    // })
+    history.push('/Dashboard')
+  }
 
-        const datapayload = {
-            'email' : data.email,
-            'password' : data.password
-        }
-
-        axios.post('http://pingifbulk.infonixmedia.in/Api/login/users',datapayload,{
-            headers : {
-                'Content-Type' : 'multipart/form-data'
-            }
-        })
-        .then(res=>{
-            setData(initialState);
-            if(res.data === 1){
-                history.push("/Dashboard");
-            }else{
-                alert('Password not match');
-            }
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    }
-
-    return(
+  return (
         <div className="signPart">
             <div className="signCart">
                 <h1>Sign In</h1>
@@ -68,7 +66,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
 export default Login
