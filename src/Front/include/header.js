@@ -17,9 +17,9 @@ const Header = (props) => {
                     <div className="col-md-8 secondColumn">
                         <p className="modeView" onClick={ props?.changeHandler } >Change Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        {!sessionStorage.getItem('userData') &&
+                        {/* {!sessionStorage.getItem('userData') && */}
                             <Link to="signin" className="startButton">Get Started</Link>
-                        }
+                        {/* } */}
                     </div>
                 </div>
             </div>
