@@ -18,6 +18,9 @@ import Signup from './Front/signUp'
 import DashboardController from './Dashboard/DashboardController'
 import NotFound from './Component/NotFound'
 
+// Modules
+import SingleMailer from './Component/Mailer/SingleMailer'
+
 const App = () => {
   const dispatch = useDispatch()
 
@@ -64,6 +67,9 @@ const App = () => {
           </Route>
           <Route path='/Dashboard'>
             <DashboardController />
+          </Route>
+          <Route path='/single-mailer'>
+            <SingleMailer />
           </Route>
           <Route path="*">
             <NotFound />
