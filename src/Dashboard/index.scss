@@ -1,0 +1,83 @@
+@import '../App.scss';
+
+.Dashboard {
+    width : 100%;
+    display: flex;
+    min-height: 90vh;
+}
+
+.mainContent {
+    width: 80%;
+    margin: 8px 8px;
+    border-radius: 4px;
+    min-height: 90vh;
+}
+
+.sidebarMain {
+    width: 20%;
+    min-height: 90vh;
+    margin-top: 8px;
+    padding-top: 10px;
+
+    a {
+        text-decoration: none;
+    }
+
+    .sideBarMenu {
+        text-decoration: none;
+        width : 100%;
+        padding: 10px 8px;
+        cursor: pointer;
+        margin-top: 2px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+}
+
+.App-light {
+    .sidebarMain {
+        background-color: $headerLight;
+        a {
+            color : $colorLight;
+        }
+
+        .sideBarMenu {
+
+            .active {
+                background-color: $contentArea;
+            }
+
+            &:hover {
+                background-color: $contentArea;
+            }
+        }
+    }
+
+    .mainContent {
+        background-color: $contentArea;
+    }
+}
+
+.App-dark{
+    .sidebarMain {
+        background-color: $headerDark;
+        a {
+            color : $colorDark;
+        }
+
+        .sideBarMenu {
+
+            .active {
+                background-color: $contentAreaDark;
+            }
+
+            &:hover {
+                background-color: $contentAreaDark;
+            }
+        }
+    }
+
+    .mainContent {
+        background-color: $contentAreaDark;
+    }
+}

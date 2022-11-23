@@ -13,12 +13,14 @@ $letterspacing : 1px;
 $primaryLight : #d3d8db;
 $colorLight : black;
 $headerLight : #ebf4fa;
+$contentArea: #fff;
 
 //front ui pingifbulk dark
 
 $primaryDark : #314c5e;
 $colorDark : #fff;
 $headerDark : #0c2536;
+$contentAreaDark: #15364d;
 
 //common color
 
@@ -32,6 +34,11 @@ body{
 h1,h2,h3,h4,h5,h6{
     margin : 0px;
     padding : 0px;
+}
+
+.Header .headCont{
+    margin: 0px 15px;
+    width: 97%;
 }
 
 //@light mode
@@ -55,7 +62,7 @@ h1,h2,h3,h4,h5,h6{
             vertical-align: center;
             border-radius: 20px;
             height : 35px;
-            margin: 13px 10px;
+            margin: 5px 10px;
             letter-spacing: $letterspacing;
             color : $colorLight;
             border : 1px solid $colorLight;
@@ -108,7 +115,7 @@ h1,h2,h3,h4,h5,h6{
             vertical-align: center;
             border-radius: 20px;
             height : 35px;
-            margin: 13px 10px;
+            margin: 5px 10px;
             letter-spacing: $letterspacing;
             text-decoration: none;
             color : $colorDark;
@@ -143,7 +150,7 @@ h1,h2,h3,h4,h5,h6{
 //common 
 
 .logoTitle{
-    padding : 13px 10px;
+    padding : 10px 10px;
     font-size: $titleSize;
     font-weight: $titleWeight;
     letter-spacing: $letterspacing;
@@ -156,7 +163,7 @@ h1,h2,h3,h4,h5,h6{
     display : flex;
 
     .modeView{
-        padding-top: 20px;
+        padding-top: 10px;
         font-size : 14px;
         letter-spacing: $letterspacing;
         color : $modeColor;
@@ -167,7 +174,7 @@ h1,h2,h3,h4,h5,h6{
 
     .homeBack{
         text-decoration: none;
-        padding-top: 20px;
+        padding-top: 10px;
         font-size : 14px;
         letter-spacing: $letterspacing;
         color : $modeColor;
@@ -192,6 +199,7 @@ h1,h2,h3,h4,h5,h6{
     text-align: center;
     padding:15px;
     letter-spacing: $letterspacing;
+    margin : 0px !important;
 }
 
 .signCart{
