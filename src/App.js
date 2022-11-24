@@ -17,6 +17,7 @@ import Signup from './Front/signUp'
 
 import DashboardController from './Dashboard/DashboardController'
 import NotFound from './Component/NotFound'
+import './notification'
 
 const App = () => {
   const dispatch = useDispatch()
