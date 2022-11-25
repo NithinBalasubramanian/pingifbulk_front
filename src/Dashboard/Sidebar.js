@@ -13,6 +13,11 @@ const SideBar = () => {
       name: 'Customer Management',
       key: 'customer_management',
       path: '/customer-management'
+    },
+    {
+      name: 'Mailer',
+      key: 'mailer',
+      path: '/single-mailer'
     }
   ]
   // eslint-disable-next-line no-unused-vars
