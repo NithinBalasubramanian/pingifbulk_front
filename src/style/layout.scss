@@ -1,0 +1,40 @@
+
+.mainContent {
+    .mainLayout {
+        width: 100%;
+        padding: 2rem;
+
+        .headerLayout {
+            width: 100%;
+            padding: 1rem 0rem 2rem 0rem;
+            border-bottom: 2px solid black;
+
+            .headerTitle {
+                font-size: 22px;
+                font-weight: 700;
+
+                h1 {
+                    font-size: 28px !important;
+                }
+            }
+        }
+
+        .contentLayout {
+            width : 100%;
+            padding : 2rem 0rem;
+
+            .formLayout {
+                width : 60%;
+            }
+
+            .form-group {
+                padding: 0rem 0rem 0.6rem 0rem;
+
+                label {
+                    font-weight: 500;
+                    margin-bottom: 0.4rem;
+                }
+            }
+        }
+    }
+}
