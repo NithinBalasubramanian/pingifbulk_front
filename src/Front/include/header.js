@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 
 const Header = (props) => {
+  const logoutHandle = () => {
+    sessionStorage.removeItem('userData')
+  }
+
   return (
         <div className='Header'>
             <div className="headCont">
@@ -17,9 +22,10 @@ const Header = (props) => {
                     <div className="col-md-8 secondColumn">
                         <p className="modeView" onClick={ props?.changeHandler } >Change Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        {/* {!sessionStorage.getItem('userData') && */}
-                            <Link to="signin" className="startButton">Get Started</Link>
-                        {/* } */}
+                        {!sessionStorage.getItem('userData')
+                          ? <Link to="signin" className="startButton">Get Started</Link>
+                          : <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
+                        }
                     </div>
                 </div>
             </div>
