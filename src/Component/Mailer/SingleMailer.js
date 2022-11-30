@@ -14,7 +14,7 @@ const SingleMailer = () => {
   const [formState, setFormState] = useState(initialState)
   const submitForm = async (e) => {
     e.preventDefault()
-    const [success] = await axios.post('http://localhost:8000/v1/mailer/mailSend', formState)
+    const { success } = await axios.post('http://localhost:8000/v1/mailer/mailSend', formState)
     if (success) {
       console.log('Sent successfully')
       setFormState(initialState)
