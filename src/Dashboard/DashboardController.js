@@ -9,7 +9,7 @@ import SingleMailer from '../Component/Mailer/SingleMailer'
 import Dashboard from './Dashboard'
 
 // eslint-disable-next-line react/prop-types
-const DashboardController = ({ logState }) => {
+const DashboardController = ({ logState, changeLog }) => {
   return (
         <div className="Dashboard">
             <Switch>
@@ -23,7 +23,7 @@ const DashboardController = ({ logState }) => {
               <Route path='/signin'>
                 {(logState)
                   ? <Redirect to="/Dashboard" />
-                  : <Login />
+                  : <Login changeLog={changeLog} />
                 }
               </Route>
               <Route path='/signup'>
@@ -32,20 +32,20 @@ const DashboardController = ({ logState }) => {
                 : <Signup />
                 }
               </Route>
-              <>
-                <SideBar />
-                <div className="mainContent">
-                  <Route path="/Dashboard">
-                    <Dashboard />
-                  </Route>
-                  <Route path='/single-mailer'>
-                    <SingleMailer />
-                  </Route>
-                  {/* <Route path="">
-                    <NotFound />
-                  </Route> */}
-                </div>
-              </>
+              {logState
+                ? <>
+                  <SideBar />
+                  <div className="mainContent">
+                    <Route path="/Dashboard">
+                      <Dashboard />
+                    </Route>
+                    <Route path='/single-mailer'>
+                      <SingleMailer />
+                    </Route>
+                  </div>
+                </>
+                : <Redirect to="/signin" />
+              }
             </Switch>
         </div>
   )
