@@ -1,12 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
+import { useDispatch, useSelector } from 'react-redux'
+import { Logstate } from '../../action/index'
 
-const Header = (props) => {
+const Header = ({ changeHandler }) => {
+  const history = useHistory()
+  const dispatch = useDispatch()
+
   const logoutHandle = () => {
     sessionStorage.removeItem('userData')
+    localStorage.removeItem('userinfo')
+    dispatch(Logstate)
+    history.push('/')
   }
+
+  const logStatus = useSelector(state => state.Log)
 
   return (
         <div className='Header'>
@@ -20,9 +30,9 @@ const Header = (props) => {
                         </h1>
                     </div>
                     <div className="col-md-8 secondColumn">
-                        <p className="modeView" onClick={ props?.changeHandler } >Change Mode</p>
+                        <p className="modeView" onClick={ changeHandler } >Change Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        {!sessionStorage.getItem('userData')
+                        {!logStatus
                           ? <Link to="signin" className="startButton">Get Started</Link>
                           : <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
                         }

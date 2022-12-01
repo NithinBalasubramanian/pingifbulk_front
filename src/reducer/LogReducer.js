@@ -3,6 +3,8 @@ const LogReducer = (logstate = false, Action) => {
     case 'LOG_STATE':
       // eslint-disable-next-line no-return-assign
       return logstate = !logstate
+    case 'LOG_OUT_STATE':
+      return false
     default :
       return logstate
   }
