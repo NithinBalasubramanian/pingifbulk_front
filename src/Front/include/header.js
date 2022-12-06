@@ -17,6 +17,7 @@ const Header = ({ changeHandler }) => {
   }
 
   const logStatus = useSelector(state => state.Log)
+  const logCheck = localStorage.getItem('userInfo')
 
   return (
         <div className='Header'>
@@ -32,9 +33,9 @@ const Header = ({ changeHandler }) => {
                     <div className="col-md-8 secondColumn">
                         <p className="modeView" onClick={ changeHandler } >Change Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        {!logStatus
-                          ? <Link to="signin" className="startButton">Get Started</Link>
-                          : <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
+                        {logStatus || logCheck
+                          ? <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
+                          : <Link to="signin" className="startButton">Get Started</Link>
                         }
                     </div>
                 </div>
