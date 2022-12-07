@@ -16,6 +16,9 @@ import ConsumerManagement from '../Container/ConsumerManagement'
 import UserType from '../Component/AppSetting/UserType'
 import ConsumerType from '../Component/AppSetting/ConsumerType'
 import TeamType from '../Component/AppSetting/TeamType'
+import AddForm from '../Component/AppSetting/UserType/AddForm'
+import AddTeamTypeForm from '../Component/AppSetting/TeamType/AddTeamTypeForm'
+import ConsumerTypeForm from '../Component/AppSetting/ConsumerType/ConsumerTypeForm'
 
 // eslint-disable-next-line react/prop-types
 const DashboardController = ({ logState, changeLog }) => {
@@ -65,11 +68,20 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/user-type-management'>
                       <UserType />
                     </Route>
+                    <Route path='/user-type-form'>
+                      <AddForm />
+                    </Route>
                     <Route path='/consumer-type-management'>
                       <ConsumerType />
                     </Route>
+                    <Route path='/consumer-type-form'>
+                      <ConsumerTypeForm />
+                    </Route>
                     <Route path='/team-type-management'>
                       <TeamType />
+                    </Route>
+                    <Route path='/team-type-form'>
+                      <AddTeamTypeForm />
                     </Route>
                   </div>
                 </>

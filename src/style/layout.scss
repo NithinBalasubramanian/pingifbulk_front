@@ -12,9 +12,15 @@
             .headerTitle {
                 font-size: 22px;
                 font-weight: 700;
+                display: flex;
 
                 h1 {
                     font-size: 28px !important;
+                    width: 40%;
+                }
+
+                a {
+                    text-decoration: none;
                 }
             }
         }
