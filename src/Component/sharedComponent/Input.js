@@ -4,7 +4,7 @@ import React from 'react'
 const Input = ({ changeHandle, name, classname = '', defaultValue = '', label, type }) => (
     <div className={`form-group ${classname}`}>
         <label htmlFor="exampleInputEmail1">{ label }</label>
-        <input type={type} name={name} onChange={(e) => changeHandle(e)} className="form-control" value={defaultValue} />
+        <input type={type} name={name} onChange={(e) => changeHandle(e)} className="form-control" value={defaultValue} placeholder={label}/>
     </div>
 )
 

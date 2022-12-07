@@ -4,7 +4,7 @@ import React from 'react'
 const TextAreaComponent = ({ changeHandle, name, classname = '', defaultValue = '', label, type, rows = '5' }) => (
     <div className={`form-group ${classname}`}>
         <label htmlFor="exampleInputEmail1">{ label }</label>
-        <textarea type={type} name={name} onChange={changeHandle} className="form-control" value={defaultValue} rows={rows}></textarea>
+        <textarea type={type} name={name} onChange={changeHandle} className="form-control" value={defaultValue} rows={rows} placeholder={label}></textarea>
     </div>
 )
 

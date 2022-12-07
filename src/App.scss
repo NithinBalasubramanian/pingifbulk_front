@@ -41,6 +41,18 @@ h1,h2,h3,h4,h5,h6{
     width: 97%;
 }
 
+.routeButton {
+    padding : 8px 25px;
+    text-align: center;
+    border-radius: 20px;
+    width: auto;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-right: 10px;
+}
+
 //@light mode
 
 .App-light{
@@ -90,6 +102,11 @@ h1,h2,h3,h4,h5,h6{
 
     .signCart{
         background-color: $headerLight;
+    }
+
+    .routeButton {
+        background-color: $headerLight;
+        color: $colorLight;
     }
 }
 
@@ -144,6 +161,11 @@ h1,h2,h3,h4,h5,h6{
 
     .signCart{
         background-color: $headerDark;
+    }
+
+    .routeButton {
+        background-color: $headerDark;
+        color: $colorDark;
     }
 }
 
