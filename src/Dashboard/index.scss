@@ -47,6 +47,10 @@
     }
 }
 
+tr td,th {
+    cursor: pointer;
+}
+
 .App-light {
     .sidebarMain {
         background-color: $headerLight;
@@ -64,6 +68,11 @@
                 background-color: $contentArea;
             }
         }
+    }
+
+    .table-header {
+        background-color: $headerLight;
+        color : $colorLight;
     }
 
     .mainContent {
@@ -88,6 +97,15 @@
                 background-color: $contentAreaDark;
             }
         }
+    }
+
+    .table-header {
+        background-color: $headerDark;
+        color : $colorDark;
+    }
+
+    tr td {
+        color : $colorDark;
     }
 
     .mainContent {

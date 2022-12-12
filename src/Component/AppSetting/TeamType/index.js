@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Table from '../../sharedComponent/Table'
 
 const TeamType = () => {
   const [tableData, setTableData] = useState([])
@@ -8,6 +9,24 @@ const TeamType = () => {
     search: '',
     status: 1
   })
+
+  const columns = [
+    {
+      title: 'S.No',
+      key: 'index',
+      type: 'number'
+    },
+    {
+      title: 'Type Name',
+      key: 'typeName',
+      type: 'string'
+    },
+    {
+      title: 'Created On',
+      key: 'createdOn',
+      type: 'date'
+    }
+  ]
 
   useEffect(() => {
     fetchData()
@@ -34,12 +53,7 @@ const TeamType = () => {
         </div>
       </div>
       <div className='contentLayout'>
-      {tableData.map(itm => {
-        return (
-          // eslint-disable-next-line react/jsx-key
-          <p>{itm.typeName}</p>
-        )
-      })}
+        <Table columns={columns} tableData={tableData} />
       </div>
     </div>
   )

@@ -1,9 +1,29 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Table from '../../sharedComponent/Table'
 
 const UserType = () => {
   const [tableData, setTableData] = useState([])
+
+  const columns = [
+    {
+      title: 'S.No',
+      key: 'index',
+      type: 'number'
+    },
+    {
+      title: 'Type Name',
+      key: 'typeName',
+      type: 'string'
+    },
+    {
+      title: 'Created On',
+      key: 'createdOn',
+      type: 'date'
+    }
+  ]
+
   const [filter, setFilter] = useState({
     search: '',
     status: 1
@@ -34,12 +54,7 @@ const UserType = () => {
         </div>
       </div>
       <div className='contentLayout'>
-      {tableData.map(itm => {
-        return (
-          // eslint-disable-next-line react/jsx-key
-          <p>{itm.typeName}</p>
-        )
-      })}
+        <Table columns={columns} tableData={tableData} />
       </div>
     </div>
   )

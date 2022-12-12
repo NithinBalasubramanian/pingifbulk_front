@@ -24,9 +24,14 @@ const AddForm = () => {
     const { data } = await axios.post('http://localhost:8000/v1/user/addUserType', formState)
     if (data.success) {
       setFormState(initialState)
+      goBack()
     } else {
       console.log('Something went wrong')
     }
+  }
+
+  const goBack = () => {
+    history.push('/user-type-management')
   }
 
   return (
@@ -41,6 +46,7 @@ const AddForm = () => {
         <form method="post" onSubmit={submitForm}>
           <Input changeHandle={changeHandle} label="User Type" defaultValue={formState.typeName} name="typeName" type="text" />
           <TextAreaComponent name="description" changeHandle={changeHandle} defaultValue={formState.description} label="Description" rows="10" />
+          <ButtonComponent classname="btn btn-primary" type="button" label="Cancel" changeHandler={goBack} />
           <ButtonComponent classname="btn btn-info btn-sm" type="submit" label="Submit" />
         </form>
       </div>
