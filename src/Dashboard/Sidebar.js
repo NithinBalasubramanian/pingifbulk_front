@@ -15,6 +15,11 @@ const SideBar = () => {
       path: '/consumer-management'
     },
     {
+      name: 'Employee Management',
+      key: 'employee_management',
+      path: '/employee-management'
+    },
+    {
       name: 'Team Management',
       key: 'team_management',
       path: '/team-management'
@@ -36,6 +41,11 @@ const SideBar = () => {
       name: 'Consumer Types',
       key: 'consumer_types',
       path: '/consumer-type-management'
+    },
+    {
+      name: 'Employee Types',
+      key: 'employee_types',
+      path: '/employee-type-management'
     },
     {
       name: 'Team Types',

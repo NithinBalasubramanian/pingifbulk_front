@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import ButtonComponent from '../../sharedComponent/ButtonComponent'
 import Input from '../../sharedComponent/Input'
 import TextAreaComponent from '../../sharedComponent/TextAreaComponent'
+import { useHistory } from 'react-router'
 
 const AddTeamTypeForm = () => {
   const initialState = {
     typeName: '',
     description: ''
   }
+  const history = useHistory()
 
   const [formState, setFormState] = useState(initialState)
 
@@ -29,6 +31,10 @@ const AddTeamTypeForm = () => {
     }
   }
 
+  const cancelBtn = () => {
+    history.push('/team-type-management')
+  }
+
   return (
         <div className='mainLayout'>
       <div className='headerLayout'>
@@ -41,7 +47,8 @@ const AddTeamTypeForm = () => {
         <form method="post" onSubmit={submitForm}>
           <Input changeHandle={changeHandle} label="User Type" defaultValue={formState.typeName} name="typeName" type="text" />
           <TextAreaComponent name="description" changeHandle={changeHandle} defaultValue={formState.description} label="Description" rows="10" />
-          <ButtonComponent classname="btn btn-info btn-sm" type="submit" label="Submit" />
+          <ButtonComponent classname="button-submit button-cancel" type="button" label="Cancel" changeHandler={cancelBtn} />
+          <ButtonComponent classname="button-submit" type="submit" label="Submit" />
         </form>
       </div>
       </div>

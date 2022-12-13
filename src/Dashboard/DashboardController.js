@@ -19,6 +19,12 @@ import TeamType from '../Component/AppSetting/TeamType'
 import AddForm from '../Component/AppSetting/UserType/AddForm'
 import AddTeamTypeForm from '../Component/AppSetting/TeamType/AddTeamTypeForm'
 import ConsumerTypeForm from '../Component/AppSetting/ConsumerType/ConsumerTypeForm'
+import EmployeeType from '../Component/AppSetting/EmployeeType'
+import AddEmployeeTypeForm from '../Component/AppSetting/EmployeeType/AddEmplyeeTypeForm'
+import EmployeeManagement from '../Container/EmployeeManagement'
+import EmployeeForm from '../Container/EmployeeManagement/EmployeeForm'
+import TeamForm from '../Container/TeamManagement/TeamForm'
+import ConsumerForm from '../Container/ConsumerManagement/ConsumerForm'
 
 // eslint-disable-next-line react/prop-types
 const DashboardController = ({ logState, changeLog }) => {
@@ -59,11 +65,23 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/user-management'>
                       <UserManagement />
                     </Route>
+                    <Route path='/employee-management'>
+                      <EmployeeManagement />
+                    </Route>
+                    <Route path='/employee-management-form'>
+                      <EmployeeForm />
+                    </Route>
                     <Route path='/team-management'>
                       <TeamManagement />
                     </Route>
+                    <Route path='/team-management-form'>
+                      <TeamForm />
+                    </Route>
                     <Route path='/consumer-management'>
                       <ConsumerManagement />
+                    </Route>
+                    <Route path='/consumer-management-form'>
+                      <ConsumerForm />
                     </Route>
                     <Route path='/user-type-management'>
                       <UserType />
@@ -76,6 +94,12 @@ const DashboardController = ({ logState, changeLog }) => {
                     </Route>
                     <Route path='/consumer-type-form'>
                       <ConsumerTypeForm />
+                    </Route>
+                    <Route path='/employee-type-management'>
+                      <EmployeeType />
+                    </Route>
+                    <Route path='/employee-type-form'>
+                      <AddEmployeeTypeForm />
                     </Route>
                     <Route path='/team-type-management'>
                       <TeamType />

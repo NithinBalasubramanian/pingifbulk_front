@@ -1,8 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Table from '../../Component/sharedComponent/Table'
 
-const UserManagement = () => {
+const EmployeeManagement = () => {
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
@@ -45,7 +46,10 @@ const UserManagement = () => {
     <div className='mainLayout'>
       <div className='headerLayout'>
         <div className='headerTitle'>
-            <h1>User Management</h1>
+            <h1>Employee Management</h1>
+            <Link to={'/employee-management-form'}>
+              <div className='routeButton'>Add Employee</div>
+            </Link>
         </div>
       </div>
       <div className='contentLayout'>
@@ -55,4 +59,4 @@ const UserManagement = () => {
   )
 }
 
-export default UserManagement
+export default EmployeeManagement

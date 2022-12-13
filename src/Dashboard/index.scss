@@ -51,6 +51,16 @@ tr td,th {
     cursor: pointer;
 }
 
+.button-submit {
+    padding: 6px 30px;
+    border-radius: 6%;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
 .App-light {
     .sidebarMain {
         background-color: $headerLight;
@@ -78,6 +88,19 @@ tr td,th {
     .mainContent {
         background-color: $contentArea;
     }
+
+    .button-submit {
+        background-color: $headerLight;
+        color : $colorLight;
+
+        // &:hover {
+        //     background-color: $contentArea;
+        // }
+    }
+
+    .button-cancel {
+        opacity: 8;
+    }
 }
 
 .App-dark{
@@ -97,6 +120,19 @@ tr td,th {
                 background-color: $contentAreaDark;
             }
         }
+    }
+
+    .button-submit {
+        background-color: $headerDark;
+        color : $colorDark;
+
+        // &:hover {
+        //     background-color: $contentAreaDark;
+        // }
+    }
+
+    .button-cancel {
+        opacity: 8;
     }
 
     .table-header {

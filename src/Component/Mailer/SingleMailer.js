@@ -43,7 +43,7 @@ const SingleMailer = () => {
                   <Input changeHandle={changeHandle} label="Email Address" defaultValue={formState.toMail} name="toMail" type="email" />
                   <Input changeHandle={changeHandle} label="Subject" defaultValue={formState.subject} name="subject" type="text" />
                   <TextAreaComponent name="content" changeHandle={changeHandle} defaultValue={formState.content} label="Message" rows="10" />
-                  <ButtonComponent classname="btn btn-info btn-sm" type="submit" label="Send Mail" />
+                  <ButtonComponent classname="button-submit" type="submit" label="Send Mail" />
                 </form>
               </div>
             </div>
