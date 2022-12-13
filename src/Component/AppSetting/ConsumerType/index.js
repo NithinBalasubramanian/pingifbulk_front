@@ -33,7 +33,7 @@ const ConsumerType = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:8000/v1/team/listTeams?status=${filter.status}&search=${filter.search}`)
+    const { data } = await axios.get(`http://localhost:8000/v1/consumer/listConsumers?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {
@@ -46,9 +46,9 @@ const ConsumerType = () => {
     <div className='mainLayout'>
       <div className='headerLayout'>
         <div className='headerTitle'>
-            <h1>consumer Type Management</h1>
+            <h1>Consumer Type Management</h1>
             <Link to={'/consumer-type-form'}>
-              <div className='routeButton'>Add consumer Type</div>
+              <div className='routeButton'>Add Consumer Type</div>
             </Link>
         </div>
       </div>

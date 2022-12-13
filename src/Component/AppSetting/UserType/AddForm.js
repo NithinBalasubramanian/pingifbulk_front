@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import ButtonComponent from '../../sharedComponent/ButtonComponent'
 import Input from '../../sharedComponent/Input'
 import TextAreaComponent from '../../sharedComponent/TextAreaComponent'
+import { useHistory } from 'react-router'
 
 const AddForm = () => {
   const initialState = {
     typeName: '',
     description: ''
   }
+  const history = useHistory()
 
   const [formState, setFormState] = useState(initialState)
 
@@ -46,8 +48,8 @@ const AddForm = () => {
         <form method="post" onSubmit={submitForm}>
           <Input changeHandle={changeHandle} label="User Type" defaultValue={formState.typeName} name="typeName" type="text" />
           <TextAreaComponent name="description" changeHandle={changeHandle} defaultValue={formState.description} label="Description" rows="10" />
-          <ButtonComponent classname="btn btn-primary" type="button" label="Cancel" changeHandler={goBack} />
-          <ButtonComponent classname="btn btn-info btn-sm" type="submit" label="Submit" />
+          <ButtonComponent classname="button-submit button-cancel" type="button" label="Cancel" changeHandler={goBack} />
+          <ButtonComponent classname="button-submit" type="submit" label="Submit" />
         </form>
       </div>
       </div>

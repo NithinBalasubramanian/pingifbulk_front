@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import ButtonComponent from '../../sharedComponent/ButtonComponent'
-import Input from '../../sharedComponent/Input'
-import TextAreaComponent from '../../sharedComponent/TextAreaComponent'
+import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
+import TextAreaComponent from '../../Component/sharedComponent/TextAreaComponent'
+import Input from '../../Component/sharedComponent/Input'
 import { useHistory } from 'react-router'
 
-const ConsumerTypeForm = () => {
+const EmployeeForm = () => {
   const initialState = {
     typeName: '',
     description: ''
@@ -23,7 +23,7 @@ const ConsumerTypeForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data } = await axios.post('http://localhost:8000/v1/consumer/addConsumerType', formState)
+    const { data } = await axios.post('http://localhost:8000/v1/user/addUserType', formState)
     if (data.success) {
       setFormState(initialState)
     } else {
@@ -32,14 +32,14 @@ const ConsumerTypeForm = () => {
   }
 
   const cancelBtn = () => {
-    history.push('/consumer-type-management')
+    history.push('/employee-management')
   }
 
   return (
-        <div className='mainLayout'>
+    <div className='mainLayout'>
       <div className='headerLayout'>
         <div className='headerTitle'>
-            <h1>Consumer Type Management</h1>
+            <h1>Add Consumer </h1>
         </div>
       </div>
       <div className='contentLayout'>
@@ -56,4 +56,4 @@ const ConsumerTypeForm = () => {
   )
 }
 
-export default ConsumerTypeForm
+export default EmployeeForm
