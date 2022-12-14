@@ -89,6 +89,9 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/user-type-form'>
                       <AddForm />
                     </Route>
+                    <Route path='/user-type-form/:id'>
+                      <AddForm />
+                    </Route>
                     <Route path='/consumer-type-management'>
                       <ConsumerType />
                     </Route>

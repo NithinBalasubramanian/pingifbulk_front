@@ -23,9 +23,10 @@ const AddEmployeeTypeForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data } = await axios.post('http://localhost:8000/v1/user/addUserType', formState)
+    const { data } = await axios.post('http://localhost:8000/v1/employee/addEmployeeType', formState)
     if (data.success) {
       setFormState(initialState)
+      cancelBtn()
     } else {
       console.log('Something went wrong')
     }
@@ -45,7 +46,7 @@ const AddEmployeeTypeForm = () => {
       <div className='contentLayout'>
       <div className='formLayout'>
         <form method="post" onSubmit={submitForm}>
-          <Input changeHandle={changeHandle} label="User Type" defaultValue={formState.typeName} name="typeName" type="text" />
+          <Input changeHandle={changeHandle} label="Employee Type" defaultValue={formState.typeName} name="typeName" type="text" />
           <TextAreaComponent name="description" changeHandle={changeHandle} defaultValue={formState.description} label="Description" rows="10" />
           <ButtonComponent classname="button-submit button-cancel" type="button" label="Cancel" changeHandler={cancelBtn} />
           <ButtonComponent classname="button-submit" type="submit" label="Submit" />

@@ -26,6 +26,7 @@ const ConsumerTypeForm = () => {
     const { data } = await axios.post('http://localhost:8000/v1/consumer/addConsumerType', formState)
     if (data.success) {
       setFormState(initialState)
+      cancelBtn()
     } else {
       console.log('Something went wrong')
     }
@@ -45,7 +46,7 @@ const ConsumerTypeForm = () => {
       <div className='contentLayout'>
       <div className='formLayout'>
         <form method="post" onSubmit={submitForm}>
-          <Input changeHandle={changeHandle} label="User Type" defaultValue={formState.typeName} name="typeName" type="text" />
+          <Input changeHandle={changeHandle} label="Consumer Type" defaultValue={formState.typeName} name="typeName" type="text" />
           <TextAreaComponent name="description" changeHandle={changeHandle} defaultValue={formState.description} label="Description" rows="10" />
           <ButtonComponent classname="button-submit button-cancel" type="button" label="Cancel" changeHandler={cancelBtn} />
           <ButtonComponent classname="button-submit" type="submit" label="Submit" />

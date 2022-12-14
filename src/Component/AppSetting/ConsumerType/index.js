@@ -33,7 +33,7 @@ const ConsumerType = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:8000/v1/consumer/listConsumers?status=${filter.status}&search=${filter.search}`)
+    const { data } = await axios.get(`http://localhost:8000/v1/consumer/fetchConsumerType?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {
