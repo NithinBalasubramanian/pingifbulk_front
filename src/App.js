@@ -1,8 +1,8 @@
 import './App.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Mode } from './action/index'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+// import { Mode } from './action/index'
 import { BrowserRouter } from 'react-router-dom'
 
 // pages
@@ -16,17 +16,30 @@ import DashboardController from './Dashboard/DashboardController'
 import './notification'
 
 const App = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const stateMode = useSelector(state => state.Mode)
   const logStatus = useSelector(state => state.Log)
 
-  const [mode, setMode] = useState(stateMode)
+  const [mode, setMode] = useState(false)
 
   const changeMode = () => {
-    dispatch(Mode)
-    setMode(!mode)
+    if (localStorage.getItem('mode')) {
+      localStorage.setItem('mode', localStorage.getItem('mode') === 'Light' ? 'Dark' : 'Light')
+      setMode(localStorage.getItem('mode') === 'Light')
+    } else {
+      setMode(true)
+      localStorage.setItem('mode', 'Dark')
+    }
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('mode')) {
+      setMode(localStorage.getItem('mode') === 'Light')
+    } else {
+      setMode(stateMode)
+    }
+  }, [])
 
   return (
     <div className={ mode ? 'App-dark' : 'App-light' } >

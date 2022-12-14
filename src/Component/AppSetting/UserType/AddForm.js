@@ -1,15 +1,18 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ButtonComponent from '../../sharedComponent/ButtonComponent'
 import Input from '../../sharedComponent/Input'
 import TextAreaComponent from '../../sharedComponent/TextAreaComponent'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 
 const AddForm = () => {
   const initialState = {
     typeName: '',
     description: ''
   }
+
+  const { id } = useParams()
+
   const history = useHistory()
 
   const [formState, setFormState] = useState(initialState)
@@ -32,9 +35,30 @@ const AddForm = () => {
     }
   }
 
+  const fetchDetails = async (reqId) => {
+    const { data } = await axios.get(`http://localhost:8000/v1/user/fetchUserTypeById/${reqId}`)
+    if (data.success) {
+      const respData = data.data[0]
+      const setResData = {
+        typeName: respData.typeName,
+        description: respData.description
+      }
+      setFormState(setResData)
+    } else {
+      console.log('Something went wrong')
+    }
+  }
+
+  console.log('data', formState)
   const goBack = () => {
     history.push('/user-type-management')
   }
+
+  useEffect(() => {
+    if (id) {
+      fetchDetails(id)
+    }
+  }, [id])
 
   return (
         <div className='mainLayout'>
