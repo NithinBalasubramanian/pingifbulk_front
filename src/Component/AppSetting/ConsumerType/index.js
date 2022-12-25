@@ -1,30 +1,38 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Table from '../../sharedComponent/Table'
 
 const ConsumerType = () => {
+  const history = useHistory()
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
     status: 1
   })
 
+  const onClickHandle = (id) => {
+    history.push(`/consumer-type-form/${id}`)
+  }
+
   const columns = [
     {
       title: 'S.No',
       key: 'index',
-      type: 'number'
+      type: 'number',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Type Name',
       key: 'typeName',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created On',
       key: 'createdOn',
-      type: 'date'
+      type: 'date',
+      clickHandle: (id) => onClickHandle(id)
     }
   ]
 
@@ -47,7 +55,7 @@ const ConsumerType = () => {
       <div className='headerLayout'>
         <div className='headerTitle'>
             <h1>Consumer Type Management</h1>
-            <Link to={'/consumer-type-form'}>
+            <Link to={'/consumer-type-form/1'}>
               <div className='routeButton'>Add Consumer Type</div>
             </Link>
         </div>

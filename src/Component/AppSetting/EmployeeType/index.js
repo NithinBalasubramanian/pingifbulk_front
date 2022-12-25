@@ -1,30 +1,38 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Table from '../../sharedComponent/Table'
 
 const EmployeeType = () => {
+  const history = useHistory()
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
     status: 1
   })
 
+  const onClickHandle = (id) => {
+    history.push(`/employee-type-form/${id}`)
+  }
+
   const columns = [
     {
       title: 'S.No',
       key: 'index',
-      type: 'number'
+      type: 'number',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Type Name',
       key: 'typeName',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created On',
       key: 'createdOn',
-      type: 'date'
+      type: 'date',
+      clickHandle: (id) => onClickHandle(id)
     }
   ]
 
@@ -47,7 +55,7 @@ const EmployeeType = () => {
       <div className='headerLayout'>
         <div className='headerTitle'>
             <h1>Employee Type Management</h1>
-            <Link to={'/employee-type-form'}>
+            <Link to={'/employee-type-form/1'}>
               <div className='routeButton'>Add Employee Type</div>
             </Link>
         </div>

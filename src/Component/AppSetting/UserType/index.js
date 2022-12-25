@@ -1,26 +1,35 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
+
 import Table from '../../sharedComponent/Table'
 
 const UserType = () => {
+  const history = useHistory()
   const [tableData, setTableData] = useState([])
+
+  const onClickHandle = (id) => {
+    history.push(`/user-type-form/${id}`)
+  }
 
   const columns = [
     {
       title: 'S.No',
       key: 'index',
-      type: 'number'
+      type: 'number',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Type Name',
       key: 'typeName',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created On',
       key: 'createdOn',
-      type: 'date'
+      type: 'date',
+      clickHandle: (id) => onClickHandle(id)
     }
   ]
 
@@ -48,7 +57,7 @@ const UserType = () => {
       <div className='headerLayout'>
         <div className='headerTitle'>
             <h1>User Type Management</h1>
-            <Link to={'/user-type-form'}>
+            <Link to={'/user-type-form/1'}>
               <div className='routeButton'>Add User Type</div>
             </Link>
         </div>

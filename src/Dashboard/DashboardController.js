@@ -86,28 +86,25 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/user-type-management'>
                       <UserType />
                     </Route>
-                    <Route path='/user-type-form'>
-                      <AddForm />
-                    </Route>
                     <Route path='/user-type-form/:id'>
                       <AddForm />
                     </Route>
                     <Route path='/consumer-type-management'>
                       <ConsumerType />
                     </Route>
-                    <Route path='/consumer-type-form'>
+                    <Route path='/consumer-type-form/:id'>
                       <ConsumerTypeForm />
                     </Route>
                     <Route path='/employee-type-management'>
                       <EmployeeType />
                     </Route>
-                    <Route path='/employee-type-form'>
+                    <Route path='/employee-type-form/:id'>
                       <AddEmployeeTypeForm />
                     </Route>
                     <Route path='/team-type-management'>
                       <TeamType />
                     </Route>
-                    <Route path='/team-type-form'>
+                    <Route path='/team-type-form/:id'>
                       <AddTeamTypeForm />
                     </Route>
                   </div>
