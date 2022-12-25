@@ -18,7 +18,7 @@ const Table = ({ columns = [], tableData = [] }) => {
                 <tr key={sindex + 1}>
                     {columns.length > 0 && columns.map((itm, index) => (
                         <>
-                            <td key={index + 1}>{itm.key === 'index' ? sindex + 1 : itm.type === 'date' ? moment(dataItm[itm.key]).format('DD-MM-YYYY') : dataItm[itm.key] }</td>
+                            <td onClick={itm.clickHandle ? () => { itm.clickHandle(dataItm._id) } : null } key={index + 1}>{itm.key === 'index' ? sindex + 1 : itm.type === 'date' ? moment(dataItm[itm.key]).format('DD-MM-YYYY') : dataItm[itm.key] }</td>
                         </>
                     ))}
                 </tr>
