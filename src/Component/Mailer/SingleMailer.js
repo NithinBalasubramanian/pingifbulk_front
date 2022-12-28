@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, { useState } from 'react'
+import instance from '../../Api_service'
 import ButtonComponent from '../sharedComponent/ButtonComponent'
 import Input from '../sharedComponent/Input'
 import TextAreaComponent from '../sharedComponent/TextAreaComponent'
@@ -14,7 +14,7 @@ const SingleMailer = () => {
   const [formState, setFormState] = useState(initialState)
   const submitForm = async (e) => {
     e.preventDefault()
-    const { success } = await axios.post('http://localhost:8000/v1/mailer/mailSend', formState)
+    const { success } = await instance.post('/mailer/mailSend', formState)
     if (success) {
       console.log('Sent successfully')
       setFormState(initialState)

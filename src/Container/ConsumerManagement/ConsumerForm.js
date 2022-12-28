@@ -1,9 +1,9 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 import TextAreaComponent from '../../Component/sharedComponent/TextAreaComponent'
 import Input from '../../Component/sharedComponent/Input'
 import { useHistory } from 'react-router'
+import instance from '../../Api_service'
 
 const ConsumerForm = () => {
   const initialState = {
@@ -23,7 +23,7 @@ const ConsumerForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data } = await axios.post('http://localhost:8000/v1/user/addUserType', formState)
+    const { data } = await instance.post('/user/addUserType', formState)
     if (data.success) {
       setFormState(initialState)
     } else {
