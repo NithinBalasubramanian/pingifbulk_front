@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
 const UserManagement = () => {
@@ -16,23 +16,42 @@ const UserManagement = () => {
       type: 'number'
     },
     {
-      title: 'Type Name',
-      key: 'typeName',
+      title: 'User Name',
+      key: 'userName',
+      type: 'string'
+    },
+    {
+      title: 'User Contact',
+      key: 'contact',
+      type: 'string'
+    },
+    {
+      title: 'User Email',
+      key: 'userMail',
       type: 'string'
     },
     {
       title: 'Created On',
       key: 'createdOn',
       type: 'date'
+    },
+    {
+      title: 'Quick Access',
+      key: 'status',
+      type: 'switch'
     }
   ]
+
+  const statusChange = (id) => {
+    console.log(id)
+  }
 
   useEffect(() => {
     fetchData()
   }, [])
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:8000/v1/team/listTeams?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get(`/user/listusers?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {
@@ -49,7 +68,7 @@ const UserManagement = () => {
         </div>
       </div>
       <div className='contentLayout'>
-        <Table columns={columns} tableData={tableData} />
+        <Table columns={columns} tableData={tableData} statusChange={statusChange} />
       </div>
     </div>
   )
