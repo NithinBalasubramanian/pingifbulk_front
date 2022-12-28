@@ -1,6 +1,6 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
+import instance from '../../../Api_service'
 
 import Table from '../../sharedComponent/Table'
 
@@ -43,7 +43,7 @@ const UserType = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:8000/v1/user/fetchUserType?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get(`/user/fetchUserType?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {

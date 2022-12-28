@@ -1,10 +1,10 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ButtonComponent from '../../sharedComponent/ButtonComponent'
 import Input from '../../sharedComponent/Input'
 import TextAreaComponent from '../../sharedComponent/TextAreaComponent'
 import { useHistory, useParams } from 'react-router'
 import { message } from 'antd'
+import instance from '../../../Api_service'
 
 const AddForm = () => {
   const initialState = {
@@ -33,7 +33,7 @@ const AddForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await axios.post('http://localhost:8000/v1/user/addUserType', formState)
+    const { data, msg } = await instance.post('/user/addUserType', formState)
     if (data.success) {
       message.success(msg)
       setFormState(initialState)
@@ -45,7 +45,7 @@ const AddForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await axios.post(`http://localhost:8000/v1/user/updateUserType/${id}`, formState)
+    const { data, msg } = await instance.post(`/user/updateUserType/${id}`, formState)
     if (data.success) {
       message.success(msg)
       setFormState(initialState)
@@ -56,7 +56,7 @@ const AddForm = () => {
   }
 
   const fetchDetails = async (reqId) => {
-    const { data } = await axios.get(`http://localhost:8000/v1/user/fetchUserTypeById/${reqId}`)
+    const { data } = await instance.get(`/user/fetchUserTypeById/${reqId}`)
     if (data.success) {
       const respData = data.data[0]
       const setResData = {
