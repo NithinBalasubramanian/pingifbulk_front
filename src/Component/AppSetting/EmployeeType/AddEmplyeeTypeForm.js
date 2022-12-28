@@ -4,6 +4,7 @@ import ButtonComponent from '../../sharedComponent/ButtonComponent'
 import Input from '../../sharedComponent/Input'
 import TextAreaComponent from '../../sharedComponent/TextAreaComponent'
 import { useHistory, useParams } from 'react-router'
+import { message } from 'antd'
 
 const AddEmployeeTypeForm = () => {
   const initialState = {
@@ -31,8 +32,9 @@ const AddEmployeeTypeForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data } = await axios.post('http://localhost:8000/v1/employee/addEmployeeType', formState)
+    const { data, msg } = await axios.post('http://localhost:8000/v1/employee/addEmployeeType', formState)
     if (data.success) {
+      message.success(msg)
       setFormState(initialState)
       cancelBtn()
     } else {
@@ -46,8 +48,9 @@ const AddEmployeeTypeForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data } = await axios.post(`http://localhost:8000/v1/employee/updateEmployeeType/${id}`, formState)
+    const { data, msg } = await axios.post(`http://localhost:8000/v1/employee/updateEmployeeType/${id}`, formState)
     if (data.success) {
+      message.success(msg)
       setFormState(initialState)
       cancelBtn()
     } else {
