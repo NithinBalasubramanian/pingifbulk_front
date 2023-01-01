@@ -25,6 +25,8 @@ import EmployeeManagement from '../Container/EmployeeManagement'
 import EmployeeForm from '../Container/EmployeeManagement/EmployeeForm'
 import TeamForm from '../Container/TeamManagement/TeamForm'
 import ConsumerForm from '../Container/ConsumerManagement/ConsumerForm'
+import BulkMailer from '../Component/Mailer/BulkMailer'
+// import Mail from '../Component/Mailer/Mail'
 
 // eslint-disable-next-line react/prop-types
 const DashboardController = ({ logState, changeLog }) => {
@@ -61,6 +63,9 @@ const DashboardController = ({ logState, changeLog }) => {
                     </Route>
                     <Route path='/single-mailer'>
                       <SingleMailer />
+                    </Route>
+                    <Route path='/bulk-mailer'>
+                      <BulkMailer />
                     </Route>
                     <Route path='/user-management'>
                       <UserManagement />
