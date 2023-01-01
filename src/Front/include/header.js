@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 import { useDispatch, useSelector } from 'react-redux'
 import { Logstate } from '../../action/index'
+import { Switch } from 'antd'
 
 const Header = ({ changeHandler }) => {
   const history = useHistory()
@@ -31,7 +32,7 @@ const Header = ({ changeHandler }) => {
                         </h1>
                     </div>
                     <div className="col-md-8 secondColumn">
-                        <p className="modeView" onClick={ changeHandler } >Change Mode</p>
+                        <p className="modeView"><Switch onChange={changeHandler} /> Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
                         {logStatus || logCheck
                           ? <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
