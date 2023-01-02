@@ -32,9 +32,9 @@ const AddTeamTypeForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post('/team/addTeamType', formState)
+    const { data } = await instance.post('/team/addTeamType', formState)
     if (data.success) {
-      message.success(msg)
+      message.success(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {
@@ -48,9 +48,9 @@ const AddTeamTypeForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post(`/team/updateTeamType/${id}`, formState)
+    const { data } = await instance.post(`/team/updateTeamType/${id}`, formState)
     if (data.success) {
-      message.success(msg)
+      message.success(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {

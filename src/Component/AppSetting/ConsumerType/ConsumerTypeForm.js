@@ -32,9 +32,9 @@ const ConsumerTypeForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post('/consumer/addConsumerType', formState)
+    const { data } = await instance.post('/consumer/addConsumerType', formState)
     if (data.success) {
-      message.success(msg)
+      message.succes(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {
@@ -49,9 +49,9 @@ const ConsumerTypeForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post(`/consumer/updateConsumerType/${id}`, formState)
+    const { data } = await instance.post(`/consumer/updateConsumerType/${id}`, formState)
     if (data.success) {
-      message.success(msg)
+      message.succes(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {
