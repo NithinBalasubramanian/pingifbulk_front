@@ -33,9 +33,9 @@ const AddForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post('/user/addUserType', formState)
+    const { data } = await instance.post('/user/addUserType', formState)
     if (data.success) {
-      message.success(msg)
+      message.success(data.msg)
       setFormState(initialState)
       goBack()
     } else {
@@ -45,9 +45,9 @@ const AddForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post(`/user/updateUserType/${id}`, formState)
+    const { data } = await instance.post(`/user/updateUserType/${id}`, formState)
     if (data.success) {
-      message.success(msg)
+      message.success(data.msg)
       setFormState(initialState)
       goBack()
     } else {

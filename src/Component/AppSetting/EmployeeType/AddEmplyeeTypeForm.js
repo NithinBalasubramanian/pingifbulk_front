@@ -32,9 +32,9 @@ const AddEmployeeTypeForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post('/employee/addEmployeeType', formState)
+    const { data } = await instance.post('/employee/addEmployeeType', formState)
     if (data.success) {
-      message.success(msg)
+      message.success(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {
@@ -48,9 +48,9 @@ const AddEmployeeTypeForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data, msg } = await instance.post(`/employee/updateEmployeeType/${id}`, formState)
+    const { data } = await instance.post(`/employee/updateEmployeeType/${id}`, formState)
     if (data.success) {
-      message.success(msg)
+      message.success(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {
