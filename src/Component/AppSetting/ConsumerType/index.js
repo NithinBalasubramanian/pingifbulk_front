@@ -29,6 +29,12 @@ const ConsumerType = () => {
       clickHandle: (id) => onClickHandle(id)
     },
     {
+      title: 'Organization Name',
+      key: 'orgName',
+      type: 'orgName',
+      clickHandle: (id) => onClickHandle(id)
+    },
+    {
       title: 'Created On',
       key: 'createdOn',
       type: 'date',

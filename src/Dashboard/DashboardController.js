@@ -30,7 +30,7 @@ import BulkMailer from '../Component/Mailer/BulkMailer'
 
 // eslint-disable-next-line react/prop-types
 const DashboardController = ({ logState, changeLog }) => {
-  const logCheck = localStorage.getItem('userInfo')
+  const logCheck = localStorage.getItem('userInfo') && (localStorage.getItem('userInfo').JWT !== '')
 
   return (
         <div className="Dashboard">

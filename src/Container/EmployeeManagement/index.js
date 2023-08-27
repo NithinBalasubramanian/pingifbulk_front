@@ -1,6 +1,6 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
 const EmployeeManagement = () => {
@@ -17,8 +17,23 @@ const EmployeeManagement = () => {
       type: 'number'
     },
     {
-      title: 'Type Name',
-      key: 'typeName',
+      title: 'Employee Name',
+      key: 'employeeName',
+      type: 'string'
+    },
+    {
+      title: 'Email',
+      key: 'mailId',
+      type: 'string'
+    },
+    {
+      title: 'Contact',
+      key: 'contact',
+      type: 'string'
+    },
+    {
+      title: 'Created By',
+      key: 'creatorName',
       type: 'string'
     },
     {
@@ -33,7 +48,7 @@ const EmployeeManagement = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:8000/v1/team/listTeams?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get(`/employee/listEmployees?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {
