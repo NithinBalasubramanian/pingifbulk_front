@@ -65,7 +65,8 @@ const ConsumerTypeForm = () => {
       const respData = data.data[0]
       const setResData = {
         typeName: respData.typeName,
-        description: respData.description
+        description: respData.description,
+        orgName: respData.orgName
       }
       setFormState(setResData)
     } else {
@@ -94,6 +95,7 @@ const ConsumerTypeForm = () => {
         <form method="post" onSubmit={id !== '1' ? updateForm : submitForm}>
           <Input changeHandle={changeHandle} label="Consumer Type" defaultValue={formState.typeName} name="typeName" type="text" />
           <TextAreaComponent name="description" changeHandle={changeHandle} defaultValue={formState.description} label="Description" rows="10" />
+          <Input changeHandle={changeHandle} label="Organization / Company name" defaultValue={formState.orgName} name="orgName" type="text" />
           <ButtonComponent classname="button-submit button-cancel" type="button" label="Cancel" changeHandler={cancelBtn} />
           <ButtonComponent classname="button-submit" type="submit" label={id !== '1' ? 'Update' : 'Submit'} />
         </form>

@@ -17,8 +17,23 @@ const ConsumerManagement = () => {
       type: 'number'
     },
     {
-      title: 'Type Name',
-      key: 'typeName',
+      title: 'Consumer Name',
+      key: 'consumerName',
+      type: 'string'
+    },
+    {
+      title: 'Email Id',
+      key: 'mailId',
+      type: 'string'
+    },
+    {
+      title: 'Contact',
+      key: 'contact',
+      type: 'string'
+    },
+    {
+      title: 'Created By',
+      key: 'createdBy',
       type: 'string'
     },
     {
@@ -33,7 +48,7 @@ const ConsumerManagement = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await instance.get(`/team/listTeams?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get(`/consumer/listConsumers?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {

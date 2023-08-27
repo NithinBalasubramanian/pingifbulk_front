@@ -19,11 +19,11 @@ const SideBar = () => {
       key: 'employee_management',
       path: '/employee-management'
     },
-    {
-      name: 'Team Management',
-      key: 'team_management',
-      path: '/team-management'
-    },
+    // {
+    //   name: 'Team Management',
+    //   key: 'team_management',
+    //   path: '/team-management'
+    // },
     {
       name: 'SIngle Mailer',
       key: 'mailer',

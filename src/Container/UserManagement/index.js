@@ -51,7 +51,7 @@ const UserManagement = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await instance.get(`/user/listusers?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get('/user/listusers')
     if (data.success) {
       setTableData(data.data)
     } else {
