@@ -1,40 +1,43 @@
 import './App.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Mode } from './action/index'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+// import { Mode } from './action/index'
+import { BrowserRouter } from 'react-router-dom'
 
 // pages
 
 import Header from './Front/include/header'
 import Footer from './Front/include/footer'
 
-import Login from './Front/login'
-import Signup from './Front/signUp'
-
 // dashboard
 
 import DashboardController from './Dashboard/DashboardController'
-import NotFound from './Component/NotFound'
+import './notification'
 
 const App = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const stateMode = useSelector(state => state.mode)
+  const stateMode = useSelector(state => state.Mode)
+  const logStatus = useSelector(state => state.Log)
 
-  const [mode, setMode] = useState(stateMode)
-
-  const [logState, setlogState] = useState(false)
+  const [mode, setMode] = useState(false)
 
   const changeMode = () => {
-    dispatch(Mode)
-    setMode(!mode)
+    if (localStorage.getItem('mode')) {
+      localStorage.setItem('mode', localStorage.getItem('mode') === 'Light' ? 'Dark' : 'Light')
+      setMode(localStorage.getItem('mode') === 'Light')
+    } else {
+      setMode(true)
+      localStorage.setItem('mode', 'Dark')
+    }
   }
 
   useEffect(() => {
-    if (sessionStorage.getItem('userData')) {
-      setlogState(true)
+    if (localStorage.getItem('mode')) {
+      setMode(localStorage.getItem('mode') === 'Light')
+    } else {
+      setMode(stateMode)
     }
   }, [])
 
@@ -42,33 +45,7 @@ const App = () => {
     <div className={ mode ? 'App-dark' : 'App-light' } >
       <BrowserRouter>
         <Header changeHandler={ changeMode } modeState={ mode } />
-        <Switch>
-          <Route path="/" exact >
-            <div className="mid">
-              <div className="temp">
-                Bulk mailing Application development underway
-              </div>
-            </div>
-          </Route>
-          <Route path='/signin'>
-            {(logState)
-              ? <Redirect to="/Dashboard" />
-              : <Login />
-            }
-          </Route>
-          <Route path='/signup'>
-          {(logState)
-            ? <Redirect to="/Dashboard" />
-            : <Signup />
-            }
-          </Route>
-          <Route path='/Dashboard'>
-            <DashboardController />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+        <DashboardController logState={logStatus} />
         <Footer />
       </BrowserRouter>
     </div>

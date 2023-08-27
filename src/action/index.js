@@ -5,3 +5,7 @@ export const Mode = {
 export const Logstate = {
   type: 'LOG_STATE'
 }
+
+export const LogOutstate = {
+  type: 'LOG_OUT_STATE'
+}

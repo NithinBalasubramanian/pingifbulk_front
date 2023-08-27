@@ -4,6 +4,10 @@
     width : 100%;
     display: flex;
     min-height: 90vh;
+
+    .signPart {
+        width: 100%;
+    }
 }
 
 .mainContent {
@@ -13,11 +17,20 @@
     min-height: 90vh;
 }
 
+.settings {
+    padding: 10px 5px;
+    font-weight: 600;
+    // text-decoration: underline;
+    font-size: 20px;
+    color: $modeColor;
+}
+
 .sidebarMain {
     width: 20%;
     min-height: 90vh;
     margin-top: 8px;
     padding-top: 10px;
+    padding-left: 10px;
 
     a {
         text-decoration: none;
@@ -32,6 +45,20 @@
         font-weight: 600;
         letter-spacing: 1px;
     }
+}
+
+tr td,th {
+    cursor: pointer;
+}
+
+.button-submit {
+    padding: 6px 30px;
+    border-radius: 6%;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 10px;
 }
 
 .App-light {
@@ -53,8 +80,26 @@
         }
     }
 
+    .table-header {
+        background-color: $headerLight;
+        color : $colorLight;
+    }
+
     .mainContent {
         background-color: $contentArea;
+    }
+
+    .button-submit {
+        background-color: $headerLight;
+        color : $colorLight;
+
+        // &:hover {
+        //     background-color: $contentArea;
+        // }
+    }
+
+    .button-cancel {
+        opacity: 8;
     }
 }
 
@@ -75,6 +120,28 @@
                 background-color: $contentAreaDark;
             }
         }
+    }
+
+    .button-submit {
+        background-color: $headerDark;
+        color : $colorDark;
+
+        // &:hover {
+        //     background-color: $contentAreaDark;
+        // }
+    }
+
+    .button-cancel {
+        opacity: 8;
+    }
+
+    .table-header {
+        background-color: $headerDark;
+        color : $colorDark;
+    }
+
+    tr td {
+        color : $colorDark;
     }
 
     .mainContent {

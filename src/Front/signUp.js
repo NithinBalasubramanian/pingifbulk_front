@@ -21,37 +21,26 @@ const Signup = () => {
 
   // Registers data restapi in pingifbulk infonixmedia ( codeigniter )
 
-  const register = (e) => {
+  const register = async (e) => {
     e.preventDefault()
 
     // payload to update
 
     const datapayload = {
-      user_name: data.name,
-      user_type: 1,
-      email: data.email,
+      userName: data.name,
+      userMail: data.email,
       contact: data.contact,
       password: data.password,
-      status: 1,
-      verification: 1
-
+      status: 1
     }
 
-    // checking data to shipping
-
-    console.log(datapayload)
-
-    axios.post('http://pingifbulk.infonixmedia.in/Api/insertData/users', datapayload, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then(res => {
-        setData(initialState)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    const { success } = await axios.post('http://localhost:8000/v1/user/addUser', datapayload)
+    if (success) {
+      console.log('Sent successfully')
+      setData(initialState)
+    } else {
+      console.log('Something went wrong')
+    }
   }
 
   return (

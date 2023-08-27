@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { Logstate } from '../action'
 
-const Login = () => {
+const Login = ({ changeLog }) => {
   const history = useHistory()
-
+  const dispatch = useDispatch()
   const initialState = {
     email: '',
     password: ''
@@ -22,29 +25,26 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault()
 
-    // const datapayload = {
-    //     'email' : data.email,
-    //     'password' : data.password
-    // }
+    const datapayload = {
+      userMail: data.email,
+      password: data.password
+    }
 
-    // await axios.post('http://pingifbulk.infonixmedia.in/Api/login/users',datapayload,{
-    //     headers : {
-    //         'Content-Type' : 'multipart/form-data'
-    //     }
-    // })
-    // .then(res=>{
-    //     setData(initialState);
-    //     if(res.data === 1){
-    //         history.push("/Dashboard");
-    //     }else{
-    //         alert('Password not match');
-    //     }
-    // })
-    // .catch(err=>{
-    //     console.log(err);
-    // })
-    sessionStorage.setItem('userData', true)
-    history.push('/Dashboard')
+    await axios.post('http://localhost:8000/v1/user/login', datapayload)
+      .then((response) => {
+        const res = response.data
+        if (res.success) {
+          sessionStorage.setItem('userData', true)
+          localStorage.setItem('userInfo', JSON.stringify(res.data))
+          dispatch(Logstate)
+          history.push('/Dashboard')
+        } else {
+          console.log('Something went wrong')
+        }
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 
   return (
