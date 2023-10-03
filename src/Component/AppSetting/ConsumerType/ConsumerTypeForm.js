@@ -34,7 +34,7 @@ const ConsumerTypeForm = () => {
     e.preventDefault()
     const { data } = await instance.post('/consumer/addConsumerType', formState)
     if (data.success) {
-      message.succes(data.msg)
+      message.success(data.msg)
       setFormState(initialState)
       cancelBtn()
     } else {
@@ -49,13 +49,17 @@ const ConsumerTypeForm = () => {
 
   const updateForm = async (e) => {
     e.preventDefault()
-    const { data } = await instance.post(`/consumer/updateConsumerType/${id}`, formState)
-    if (data.success) {
-      message.succes(data.msg)
-      setFormState(initialState)
-      cancelBtn()
-    } else {
-      console.log('Something went wrong')
+    try {
+      const { data } = await instance.post(`/consumer/updateConsumerType/${id}`, formState)
+      if (data?.success) {
+        message.success(data?.msg)
+        setFormState(initialState)
+        cancelBtn()
+      } else {
+        console.log('Something went wrong')
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
 
