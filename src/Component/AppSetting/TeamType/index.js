@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import instance from '../../../Api_service'
@@ -8,7 +9,7 @@ const TeamType = () => {
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
-    status: 1
+    status: ''
   })
 
   const onClickHandle = (id) => {
@@ -33,6 +34,12 @@ const TeamType = () => {
       key: 'createdOn',
       type: 'date',
       clickHandle: (id) => onClickHandle(id)
+    },
+    {
+      title: 'Status',
+      key: 'status',
+      type: 'switch',
+      statusChange: (id, status) => changeState(id, status)
     }
   ]
 
@@ -47,6 +54,16 @@ const TeamType = () => {
     } else {
       console.log('Something went wrong')
       setFilter(...filter, { search: '' })
+    }
+  }
+
+  const changeState = async (id, status) => {
+    const { data } = await instance.get(`/team/updateTeamTypeStatus/${id}/${status === 1 ? 0 : 1}`)
+    if (data.success) {
+      fetchData()
+      message.success(data?.msg)
+    } else {
+      console.log('Something went wrong')
     }
   }
 

@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import instance from '../../../Api_service'
@@ -30,12 +31,18 @@ const UserType = () => {
       key: 'createdOn',
       type: 'date',
       clickHandle: (id) => onClickHandle(id)
+    },
+    {
+      title: 'Status',
+      key: 'status',
+      type: 'switch',
+      statusChange: (id, status) => changeState(id, status)
     }
   ]
 
   const [filter, setFilter] = useState({
     search: '',
-    status: 1
+    status: ''
   })
 
   useEffect(() => {
@@ -49,6 +56,16 @@ const UserType = () => {
     } else {
       console.log('Something went wrong')
       setFilter(...filter, { search: '' })
+    }
+  }
+
+  const changeState = async (id, status) => {
+    const { data } = await instance.get(`/user/updateUserTypeStatus/${id}/${status === 1 ? 0 : 1}`)
+    if (data.success) {
+      message.success(data?.msg)
+      fetchData()
+    } else {
+      console.log('Something went wrong')
     }
   }
 
