@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import instance from '../../Api_service'
@@ -7,7 +8,7 @@ const ConsumerManagement = () => {
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
-    status: 1
+    status: ''
   })
 
   const columns = [
@@ -40,8 +41,24 @@ const ConsumerManagement = () => {
       title: 'Created On',
       key: 'createdOn',
       type: 'date'
+    },
+    {
+      title: 'Status',
+      key: 'status',
+      type: 'switch',
+      statusChange: (id, status) => changeState(id, status)
     }
   ]
+
+  const changeState = async (id, status) => {
+    const { data } = await instance.get(`/consumer/consumerStatusUpdate/${id}/${status === 1 ? 0 : 1}`)
+    if (data.success) {
+      message.success(data?.msg)
+      fetchData()
+    } else {
+      console.log('Something went wrong')
+    }
+  }
 
   useEffect(() => {
     fetchData()

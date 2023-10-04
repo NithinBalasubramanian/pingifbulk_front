@@ -1,13 +1,14 @@
-import axios from 'axios'
+import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
 const TeamManagement = () => {
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
-    status: 1
+    status: ''
   })
 
   const columns = [
@@ -25,15 +26,31 @@ const TeamManagement = () => {
       title: 'Created On',
       key: 'createdOn',
       type: 'date'
+    },
+    {
+      title: 'Status',
+      key: 'status',
+      type: 'switch',
+      statusChange: (id, status) => changeState(id, status)
     }
   ]
+
+  const changeState = async (id, status) => {
+    const { data } = await instance.get(`/team/teamStatusUpdate/${id}/${status === 1 ? 0 : 1}`)
+    if (data.success) {
+      message.success(data?.msg)
+      fetchData()
+    } else {
+      console.log('Something went wrong')
+    }
+  }
 
   useEffect(() => {
     fetchData()
   }, [])
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:8000/v1/team/listTeams?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get(`/team/listTeams?status=${filter.status}&search=${filter.search}`)
     if (data.success) {
       setTableData(data.data)
     } else {
