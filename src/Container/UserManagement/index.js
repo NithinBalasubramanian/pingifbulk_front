@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
@@ -6,7 +7,7 @@ const UserManagement = () => {
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
-    status: 1
+    status: ''
   })
 
   const columns = [
@@ -36,14 +37,21 @@ const UserManagement = () => {
       type: 'date'
     },
     {
-      title: 'Quick Access',
+      title: 'Status',
       key: 'status',
-      type: 'switch'
+      type: 'switch',
+      statusChange: (id, status) => changeState(id, status)
     }
   ]
 
-  const statusChange = (id) => {
-    console.log(id)
+  const changeState = async (id, status) => {
+    const { data } = await instance.get(`/user/updateUserStatus/${id}/${status === 1 ? 0 : 1}`)
+    if (data.success) {
+      message.success(data?.msg)
+      fetchData()
+    } else {
+      console.log('Something went wrong')
+    }
   }
 
   useEffect(() => {
@@ -68,7 +76,7 @@ const UserManagement = () => {
         </div>
       </div>
       <div className='contentLayout'>
-        <Table columns={columns} tableData={tableData} statusChange={statusChange} />
+        <Table columns={columns} tableData={tableData} />
       </div>
     </div>
   )
