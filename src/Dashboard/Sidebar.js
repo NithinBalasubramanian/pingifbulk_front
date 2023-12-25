@@ -25,7 +25,7 @@ const SideBar = () => {
     //   path: '/team-management'
     // },
     {
-      name: 'SIngle Mailer',
+      name: 'Single Mailer',
       key: 'mailer',
       path: '/single-mailer'
     },
@@ -33,6 +33,11 @@ const SideBar = () => {
       name: 'Bulk Mailer',
       key: 'mailer',
       path: '/bulk-mailer'
+    },
+    {
+      name: 'Mailer',
+      key: 'mailer',
+      path: '/mailer'
     }
   ]
 

@@ -2,8 +2,8 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
-import { useDispatch, useSelector } from 'react-redux'
-import { Logstate } from '../../action/index'
+import { useDispatch } from 'react-redux'
+import { LogOutstate } from '../../action/index'
 import { Switch } from 'antd'
 
 const Header = ({ changeHandler }) => {
@@ -12,12 +12,11 @@ const Header = ({ changeHandler }) => {
 
   const logoutHandle = () => {
     sessionStorage.removeItem('userData')
-    localStorage.removeItem('userinfo')
-    dispatch(Logstate)
+    localStorage.removeItem('userInfo')
+    dispatch(LogOutstate)
     history.push('/')
   }
 
-  const logStatus = useSelector(state => state.Log)
   const logCheck = localStorage.getItem('userInfo')
 
   return (
@@ -34,7 +33,7 @@ const Header = ({ changeHandler }) => {
                     <div className="col-md-8 secondColumn">
                         <p className="modeView"><Switch onChange={changeHandler} /> Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        {logStatus || logCheck
+                        {logCheck
                           ? <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
                           : <Link to="signin" className="startButton">Get Started</Link>
                         }

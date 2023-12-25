@@ -17,6 +17,11 @@ const UserManagement = () => {
       type: 'number'
     },
     {
+      title: 'User Type',
+      key: 'userType',
+      type: 'string'
+    },
+    {
       title: 'User Name',
       key: 'userName',
       type: 'string'

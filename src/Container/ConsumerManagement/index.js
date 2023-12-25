@@ -18,6 +18,11 @@ const ConsumerManagement = () => {
       type: 'number'
     },
     {
+      title: 'Consumer Type',
+      key: 'consumerType',
+      type: 'string'
+    },
+    {
       title: 'Consumer Name',
       key: 'consumerName',
       type: 'string'
