@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './index.scss'
 import SideBar from './Sidebar'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, useHistory, useLocation } from 'react-router-dom'
 
 import Login from '../Front/login'
 import Signup from '../Front/signUp'
@@ -26,11 +26,20 @@ import EmployeeForm from '../Container/EmployeeManagement/EmployeeForm'
 import TeamForm from '../Container/TeamManagement/TeamForm'
 import ConsumerForm from '../Container/ConsumerManagement/ConsumerForm'
 import BulkMailer from '../Component/Mailer/BulkMailer'
+import Mailer from '../Component/Mailer/Mailer'
 // import Mail from '../Component/Mailer/Mail'
 
 // eslint-disable-next-line react/prop-types
 const DashboardController = ({ logState, changeLog }) => {
-  const logCheck = localStorage.getItem('userInfo') && (localStorage.getItem('userInfo').JWT !== '')
+  const history = useHistory()
+  const location = useLocation()
+  const logCheck = localStorage.getItem('userInfo')
+
+  useEffect(() => {
+    if (location.pathname === '/' && logCheck) {
+      history.push('/dashboard')
+    }
+  }, [location])
 
   return (
         <div className="Dashboard">
@@ -54,7 +63,7 @@ const DashboardController = ({ logState, changeLog }) => {
                 : <Signup />
                 }
               </Route>
-              {logState || logCheck
+              {logCheck
                 ? <>
                   <SideBar />
                   <div className="mainContent">
@@ -66,6 +75,9 @@ const DashboardController = ({ logState, changeLog }) => {
                     </Route>
                     <Route path='/bulk-mailer'>
                       <BulkMailer />
+                    </Route>
+                    <Route path='/mailer'>
+                      <Mailer />
                     </Route>
                     <Route path='/user-management'>
                       <UserManagement />

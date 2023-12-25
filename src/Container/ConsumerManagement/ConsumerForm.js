@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 import TextAreaComponent from '../../Component/sharedComponent/TextAreaComponent'
 import Input from '../../Component/sharedComponent/Input'
 import { useHistory } from 'react-router'
 import instance from '../../Api_service'
+import Select from '../../Component/sharedComponent/Select'
 
 const ConsumerForm = () => {
   const initialState = {
@@ -13,6 +14,11 @@ const ConsumerForm = () => {
   const history = useHistory()
 
   const [formState, setFormState] = useState(initialState)
+  const [consumerType, setConsumerType] = useState([])
+
+  useEffect(() => {
+    fetchConsumerType()
+  }, [])
 
   const changeHandle = (e) => {
     const { name, value } = e.target
@@ -23,7 +29,7 @@ const ConsumerForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data } = await instance.post('/user/addUserType', formState)
+    const { data } = await instance.post('/consumer/addConsumer', formState)
     if (data.success) {
       setFormState(initialState)
     } else {
@@ -33,6 +39,18 @@ const ConsumerForm = () => {
 
   const cancelBtn = () => {
     history.push('/consumer-management')
+  }
+
+  const fetchConsumerType = async () => {
+    const { data } = await instance.get('/consumer/fetchConsumerType?status=1')
+    if (data.success) {
+      const filterOption = data.data.map((itm) => (
+        { value: itm._id, name: itm.typeName }
+      ))
+      setConsumerType(filterOption)
+    } else {
+      console.log('Something went wrong')
+    }
   }
 
   return (
@@ -45,12 +63,12 @@ const ConsumerForm = () => {
       <div className='contentLayout'>
       <div className='formLayout'>
         <form method="post" onSubmit={submitForm}>
-          <Input
+          <Select
               changeHandle={changeHandle}
               label="Consumer Type"
-              defaultValue={formState.typeName}
-              name="typeName"
-              type="text"
+              defaultValue={formState.consumerType}
+              name="consumerType"
+              options={consumerType}
           />
           <Input
             changeHandle={changeHandle}
@@ -61,6 +79,11 @@ const ConsumerForm = () => {
           />
           <Input
             changeHandle={changeHandle}
+            label="Middle Name"
+            defaultValue={formState.middleName}
+            name="middleName" type="text" />
+          <Input
+            changeHandle={changeHandle}
             label="Last Name"
             defaultValue={formState.lastName}
             name="lastName"
@@ -68,14 +91,9 @@ const ConsumerForm = () => {
           />
           <Input
             changeHandle={changeHandle}
-            label="Preffered Name"
-            defaultValue={formState.prefName}
-            name="prefName" type="text" />
-          <Input
-            changeHandle={changeHandle}
             label="Email Id"
-            defaultValue={formState.email}
-            name="email" type="text" />
+            defaultValue={formState.mailId}
+            name="mailId" type="text" />
           <Input
             changeHandle={changeHandle}
             label="Contact"

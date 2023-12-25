@@ -16,7 +16,6 @@ const SingleMailer = () => {
     e.preventDefault()
     const { success } = await instance.post('/mailer/mailSend', formState)
     if (success) {
-      console.log('Sent successfully')
       setFormState(initialState)
     } else {
       console.log('Something went wrong')
