@@ -1,10 +1,11 @@
 import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
 const ConsumerManagement = () => {
+  const history = useHistory()
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
@@ -15,37 +16,44 @@ const ConsumerManagement = () => {
     {
       title: 'S.No',
       key: 'index',
-      type: 'number'
+      type: 'number',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Consumer Type',
       key: 'consumerType',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Consumer Name',
       key: 'consumerName',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Email Id',
       key: 'mailId',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Contact',
       key: 'contact',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created By',
       key: 'createdBy',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created On',
       key: 'createdOn',
-      type: 'date'
+      type: 'date',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Status',
@@ -54,6 +62,10 @@ const ConsumerManagement = () => {
       statusChange: (id, status) => changeState(id, status)
     }
   ]
+
+  const onClickHandle = (id) => {
+    history.push(`/consumer-management-form/${id}`)
+  }
 
   const changeState = async (id, status) => {
     const { data } = await instance.get(`/consumer/consumerStatusUpdate/${id}/${status === 1 ? 0 : 1}`)
@@ -84,7 +96,7 @@ const ConsumerManagement = () => {
       <div className='headerLayout'>
         <div className='headerTitle'>
             <h1>Consumer Management</h1>
-            <Link to={'/consumer-management-form'}>
+            <Link to={'/consumer-management-form/1'}>
               <div className='routeButton'>Add Consumer</div>
             </Link>
         </div>
