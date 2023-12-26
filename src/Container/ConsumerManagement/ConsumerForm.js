@@ -2,23 +2,39 @@ import React, { useEffect, useState } from 'react'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 import TextAreaComponent from '../../Component/sharedComponent/TextAreaComponent'
 import Input from '../../Component/sharedComponent/Input'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import instance from '../../Api_service'
 import Select from '../../Component/sharedComponent/Select'
+import { message } from 'antd'
 
 const ConsumerForm = () => {
   const initialState = {
-    typeName: '',
+    consumerTypeId: '',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    mailId: '',
+    contact: '',
     description: ''
   }
   const history = useHistory()
+  let defaultId = ''
+  const { id } = useParams()
 
+  if (id) {
+    defaultId = id
+  }
+
+  const [formId] = useState(defaultId)
   const [formState, setFormState] = useState(initialState)
   const [consumerType, setConsumerType] = useState([])
 
   useEffect(() => {
     fetchConsumerType()
-  }, [])
+    if (formId !== '1') {
+      fetchConsumerData()
+    }
+  }, [formId])
 
   const changeHandle = (e) => {
     const { name, value } = e.target
@@ -29,11 +45,24 @@ const ConsumerForm = () => {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const { data } = await instance.post('/consumer/addConsumer', formState)
-    if (data.success) {
-      setFormState(initialState)
+    if (formId === '1') {
+      const { data } = await instance.post('/consumer/addConsumer', formState)
+      if (data.success) {
+        message.success(data.msg)
+        setFormState(initialState)
+        cancelBtn()
+      } else {
+        console.log('Something went wrong')
+      }
     } else {
-      console.log('Something went wrong')
+      const { data } = await instance.post(`/consumer/consumerUpdate/${formId}`, formState)
+      if (data.success) {
+        message.success(data.msg)
+        setFormState(initialState)
+        cancelBtn()
+      } else {
+        console.log('Something went wrong')
+      }
     }
   }
 
@@ -53,11 +82,20 @@ const ConsumerForm = () => {
     }
   }
 
+  const fetchConsumerData = async () => {
+    const { data } = await instance.get(`/consumer/fetchConsumerById/${formId}`)
+    if (data.success) {
+      setFormState(data.data)
+    } else {
+      console.log('Something went wrong')
+    }
+  }
+
   return (
     <div className='mainLayout'>
       <div className='headerLayout'>
         <div className='headerTitle'>
-            <h1>Add Consumer </h1>
+            <h1>{formId === '1' ? 'Add' : 'Update'} Consumer </h1>
         </div>
       </div>
       <div className='contentLayout'>
@@ -66,8 +104,8 @@ const ConsumerForm = () => {
           <Select
               changeHandle={changeHandle}
               label="Consumer Type"
-              defaultValue={formState.consumerType}
-              name="consumerType"
+              defaultValue={formState.consumerTypeId}
+              name="consumerTypeId"
               options={consumerType}
           />
           <Input

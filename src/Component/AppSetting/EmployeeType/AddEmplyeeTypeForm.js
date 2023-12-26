@@ -61,7 +61,7 @@ const AddEmployeeTypeForm = () => {
   const fetchDetails = async (reqId) => {
     const { data } = await instance.get(`employee/fetchEmployeeTypeById/${reqId}`)
     if (data.success) {
-      const respData = data.data[0]
+      const respData = data.data
       const setResData = {
         typeName: respData.typeName,
         description: respData.description

@@ -1,10 +1,11 @@
 import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
 const EmployeeManagement = () => {
+  const history = useHistory()
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
@@ -15,32 +16,38 @@ const EmployeeManagement = () => {
     {
       title: 'S.No',
       key: 'index',
-      type: 'number'
+      type: 'number',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Employee Name',
       key: 'employeeName',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Email',
       key: 'mailId',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Contact',
       key: 'contact',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created By',
       key: 'creatorName',
-      type: 'string'
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created On',
       key: 'createdOn',
-      type: 'date'
+      type: 'date',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Status',
@@ -74,12 +81,16 @@ const EmployeeManagement = () => {
     }
   }
 
+  const onClickHandle = (id) => {
+    history.push(`/employee-management-form/${id}`)
+  }
+
   return (
     <div className='mainLayout'>
       <div className='headerLayout'>
         <div className='headerTitle'>
             <h1>Employee Management</h1>
-            <Link to={'/employee-management-form'}>
+            <Link to={'/employee-management-form/1'}>
               <div className='routeButton'>Add Employee</div>
             </Link>
         </div>
