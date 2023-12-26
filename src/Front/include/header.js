@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 import { useDispatch } from 'react-redux'
 import { LogOutstate } from '../../action/index'
@@ -9,6 +9,8 @@ import { Switch } from 'antd'
 const Header = ({ changeHandler }) => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const location = useLocation()
+  const [logState, setLogState] = useState(false)
 
   const logoutHandle = () => {
     sessionStorage.removeItem('userData')
@@ -18,6 +20,10 @@ const Header = ({ changeHandler }) => {
   }
 
   const logCheck = localStorage.getItem('userInfo')
+
+  useEffect(() => {
+    setLogState(logCheck)
+  }, [logCheck, location])
 
   return (
         <div className='Header'>
@@ -33,7 +39,7 @@ const Header = ({ changeHandler }) => {
                     <div className="col-md-8 secondColumn">
                         <p className="modeView"><Switch onChange={changeHandler} /> Mode</p>
                         <Link to="" className="homeBack">HOME</Link>
-                        {logCheck
+                        {logState
                           ? <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
                           : <Link to="signin" className="startButton">Get Started</Link>
                         }

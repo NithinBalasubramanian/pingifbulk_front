@@ -85,7 +85,7 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/employee-management'>
                       <EmployeeManagement />
                     </Route>
-                    <Route path='/employee-management-form'>
+                    <Route path='/employee-management-form/:id'>
                       <EmployeeForm />
                     </Route>
                     <Route path='/team-management'>
@@ -97,7 +97,7 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/consumer-management'>
                       <ConsumerManagement />
                     </Route>
-                    <Route path='/consumer-management-form'>
+                    <Route path='/consumer-management-form/:id'>
                       <ConsumerForm />
                     </Route>
                     <Route path='/user-type-management'>
