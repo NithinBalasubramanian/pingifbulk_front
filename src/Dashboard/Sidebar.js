@@ -1,23 +1,29 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './index.scss'
 
-const SideBar = () => {
+const SideBar = ({ userType }) => {
+  console.log(userType)
   const menuItems = [
     {
       name: 'User Management',
       key: 'user_management',
-      path: '/user-management'
+      path: '/user-management',
+      displayState: userType
     },
     {
       name: 'Consumer Management',
       key: 'consumer_management',
-      path: '/consumer-management'
+      path: '/consumer-management',
+      displayState: true
     },
     {
       name: 'Employee Management',
       key: 'employee_management',
-      path: '/employee-management'
+      path: '/employee-management',
+      displayState: true
     },
     // {
     //   name: 'Team Management',
@@ -27,17 +33,20 @@ const SideBar = () => {
     {
       name: 'Single Mailer',
       key: 'mailer',
-      path: '/single-mailer'
+      path: '/single-mailer',
+      displayState: true
     },
     {
       name: 'Bulk Mailer',
       key: 'mailer',
-      path: '/bulk-mailer'
+      path: '/bulk-mailer',
+      displayState: true
     },
     {
       name: 'Mailer',
       key: 'mailer',
-      path: '/mailer'
+      path: '/mailer',
+      displayState: true
     }
   ]
 
@@ -45,22 +54,26 @@ const SideBar = () => {
     {
       name: 'User Types',
       key: 'user_types',
-      path: '/user-type-management'
+      path: '/user-type-management',
+      displayState: userType
     },
     {
       name: 'Consumer Types',
       key: 'consumer_types',
-      path: '/consumer-type-management'
+      path: '/consumer-type-management',
+      displayState: true
     },
     {
       name: 'Employee Types',
       key: 'employee_types',
-      path: '/employee-type-management'
+      path: '/employee-type-management',
+      displayState: true
     },
     {
       name: 'Team Types',
       key: 'team_types',
-      path: '/team-type-management'
+      path: '/team-type-management',
+      displayState: true
     }
   ]
   // eslint-disable-next-line no-unused-vars
@@ -69,23 +82,27 @@ const SideBar = () => {
   return (
         <div className="sidebarMain">
             {menuList.length > 0 && menuItems.map((itm, k) => {
-              return (
-                    <Link key={k} to={itm.path}>
-                        <div className="sideBarMenu">
-                            {itm.name}
-                        </div>
-                    </Link>
-              )
+              if (itm.displayState) {
+                return (
+                      <Link key={k} to={itm.path}>
+                          <div className="sideBarMenu">
+                              {itm.name}
+                          </div>
+                      </Link>
+                )
+              }
             })}
             <p className='settings'>App Settings</p>
             {generalMenuItems.length > 0 && generalMenuItems.map((itm, k) => {
-              return (
-                    <Link key={k} to={itm.path}>
-                        <div className="sideBarMenu">
-                            {itm.name}
-                        </div>
-                    </Link>
-              )
+              if (itm.displayState) {
+                return (
+                      <Link key={k} to={itm.path}>
+                          <div className="sideBarMenu">
+                              {itm.name}
+                          </div>
+                      </Link>
+                )
+              }
             })}
         </div>
   )

@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-// eslint-disable-next-line no-unused-vars
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { Logstate } from '../action'
+import instance from '../Api_service'
 
 const Login = ({ changeLog }) => {
   const history = useHistory()
@@ -30,7 +29,7 @@ const Login = ({ changeLog }) => {
       password: data.password
     }
 
-    await axios.post('http://localhost:8000/v1/user/login', datapayload)
+    await instance.post('/user/login', datapayload)
       .then((response) => {
         const res = response.data
         if (res.success) {

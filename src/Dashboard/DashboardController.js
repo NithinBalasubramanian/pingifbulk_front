@@ -34,6 +34,7 @@ const DashboardController = ({ logState, changeLog }) => {
   const history = useHistory()
   const location = useLocation()
   const logCheck = localStorage.getItem('userInfo')
+  const userType = JSON.parse(logCheck)?.userType
 
   useEffect(() => {
     if (location.pathname === '/' && logCheck) {
@@ -65,7 +66,7 @@ const DashboardController = ({ logState, changeLog }) => {
               </Route>
               {logCheck
                 ? <>
-                  <SideBar />
+                  <SideBar userType={userType === 'Super-Admin'} />
                   <div className="mainContent">
                     <Route path="/Dashboard">
                       <Dashboard />
