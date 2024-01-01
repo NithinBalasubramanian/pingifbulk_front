@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import React, { useState } from 'react'
-import axios from 'axios'
+import instance from '../Api_service'
 
 const Signup = () => {
   const initialState = {
@@ -11,10 +11,11 @@ const Signup = () => {
     secPassword: ''
   }
 
-  const [data, setData] = useState(initialState)
+  const [formData, setFormData] = useState(initialState)
+  const history = useHistory()
 
   const changeState = (e) => {
-    setData(prevstate => {
+    setFormData(prevstate => {
       return { ...prevstate, [e.target.name]: e.target.value }
     })
   }
@@ -27,17 +28,17 @@ const Signup = () => {
     // payload to update
 
     const datapayload = {
-      userName: data.name,
-      userMail: data.email,
-      contact: data.contact,
-      password: data.password,
+      userName: formData.name,
+      userMail: formData.email,
+      contact: formData.contact,
+      password: formData.password,
       status: 1
     }
 
-    const { success } = await axios.post('http://localhost:8000/v1/user/addUser', datapayload)
-    if (success) {
-      console.log('Sent successfully')
-      setData(initialState)
+    const { data } = await instance.post('/user/addUser', datapayload)
+    if (data.success) {
+      setFormData(initialState)
+      history.push('/')
     } else {
       console.log('Something went wrong')
     }
@@ -49,23 +50,23 @@ const Signup = () => {
                 <h1>Sign Up</h1>
                 <div className="form-group formSet">
                     <label>Name</label>
-                    <input type="text" className="form-control" placeholder="User Name" name="name" onChange={ changeState } value={ data.name }></input>
+                    <input type="text" className="form-control" placeholder="User Name" name="name" onChange={ changeState } value={ formData.name }></input>
                 </div>
                 <div className="form-group formSet">
                     <label>Email</label>
-                    <input type="text" className="form-control" placeholder="example@gmail.com" name="email" onChange={ changeState } value={ data.email }></input>
+                    <input type="text" className="form-control" placeholder="example@gmail.com" name="email" onChange={ changeState } value={ formData.email }></input>
                 </div>
                 <div className="form-group formSet">
                     <label>Contact</label>
-                    <input type="text" className="form-control" placeholder="Enter contact" name="contact" onChange={ changeState } value={ data.contact }></input>
+                    <input type="text" className="form-control" placeholder="Enter contact" name="contact" onChange={ changeState } value={ formData.contact }></input>
                 </div>
                 <div className="form-group formSet">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="***********" name="password" onChange={ changeState } value={ data.password }></input>
+                    <input type="password" className="form-control" placeholder="***********" name="password" onChange={ changeState } value={ formData.password }></input>
                 </div>
                 <div className="form-group formSet">
                     <label>Re-type Password</label>
-                    <input type="password" className="form-control" placeholder="***********" name="secPassword" onChange={ changeState } value={ data.secPassword }></input>
+                    <input type="password" className="form-control" placeholder="***********" name="secPassword" onChange={ changeState } value={ formData.secPassword }></input>
                 </div>
                 <div className="form-group formSet">
                     <input type="submit" className="form-control btn btn-sm button_class" value="SIGN UP" onClick={ register }></input>
