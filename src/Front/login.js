@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Logstate } from '../action'
 import instance from '../Api_service'
+import { message } from 'antd'
 
 const Login = ({ changeLog }) => {
   const history = useHistory()
@@ -38,7 +39,7 @@ const Login = ({ changeLog }) => {
           dispatch(Logstate)
           history.push('/Dashboard')
         } else {
-          console.log('Something went wrong')
+          message.error(res.msg)
         }
       })
       .catch(e => {
