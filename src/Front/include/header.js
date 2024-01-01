@@ -15,6 +15,7 @@ const Header = ({ changeHandler }) => {
   const logoutHandle = () => {
     sessionStorage.removeItem('userData')
     localStorage.removeItem('userInfo')
+    localStorage.clear()
     dispatch(LogOutstate)
     history.push('/')
   }
