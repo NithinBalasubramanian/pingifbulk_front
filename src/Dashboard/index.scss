@@ -1,4 +1,32 @@
-@import '../App.scss';
+@use '../App.scss';
+
+//front commen ui
+
+$titlePadding : 15px 10px;
+$titleSize : 28px;
+$titleWeight : 800;
+$subTitleSize : 24px;
+$subTitleWeight : 600;
+
+$letterspacing : 1px;
+
+//front Ui pingifbulk light
+
+$primaryLight : #c1f7e4;
+$colorLight : black;
+$headerLight : #7df0c7;
+$contentArea: #fff;
+
+//front ui pingifbulk dark
+
+$primaryDark : #314c5e;
+$colorDark : #fff;
+$headerDark : #0c2536;
+$contentAreaDark: #15364d;
+
+//common color
+
+$modeColor : #979a9c;
 
 .Dashboard {
     width : 100%;

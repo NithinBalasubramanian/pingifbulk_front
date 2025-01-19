@@ -66,7 +66,7 @@ const DashboardController = ({ logState, changeLog }) => {
               </Route>
               {logCheck
                 ? <>
-                  <SideBar userType={userType === 'Super-Admin'} />
+                  <SideBar userType={userType === 'SuperAdmin'} />
                   <div className="mainContent">
                     <Route path="/Dashboard">
                       <Dashboard />
