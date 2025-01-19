@@ -63,7 +63,7 @@ const AddEmployeeTypeForm = () => {
     if (data.success) {
       const respData = data.data
       const setResData = {
-        typeName: respData.typeName,
+        typeName: respData.typeDisplayName,
         description: respData.description
       }
       setFormState(setResData)

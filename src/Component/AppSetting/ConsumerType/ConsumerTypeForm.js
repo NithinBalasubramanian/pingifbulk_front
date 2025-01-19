@@ -68,7 +68,7 @@ const ConsumerTypeForm = () => {
     if (data.success) {
       const respData = data.data[0]
       const setResData = {
-        typeName: respData.typeName,
+        typeName: respData.typeDisplayName,
         description: respData.description,
         orgName: respData.orgName
       }

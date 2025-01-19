@@ -38,6 +38,7 @@ const Login = ({ changeLog }) => {
           localStorage.setItem('userInfo', JSON.stringify(res.data))
           dispatch(Logstate)
           history.push('/Dashboard')
+          window.location.reload()
         } else {
           message.error(res.msg)
         }

@@ -42,7 +42,7 @@ const App = () => {
   }, [])
 
   return (
-    <div className={ mode ? 'App-dark' : 'App-light' } >
+    <div className={ !mode ? 'App-dark' : 'App-light' } >
       <BrowserRouter>
         <Header changeHandler={ changeMode } modeState={ mode } />
         <DashboardController logState={logStatus} />

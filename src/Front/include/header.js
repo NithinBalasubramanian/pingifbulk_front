@@ -17,7 +17,8 @@ const Header = ({ changeHandler }) => {
     localStorage.removeItem('userInfo')
     localStorage.clear()
     dispatch(LogOutstate)
-    history.push('/')
+    // history.replace('/')
+    window.location.reload()
   }
 
   const logCheck = localStorage.getItem('userInfo')
@@ -29,7 +30,7 @@ const Header = ({ changeHandler }) => {
   return (
         <div className='Header'>
             <div className="headCont">
-                <div className="row">
+                <div className="row justify-content-between">
                     <div className="col-md-4">
                         <h1>
                             <Link to="" className="logoTitle">
@@ -38,7 +39,7 @@ const Header = ({ changeHandler }) => {
                         </h1>
                     </div>
                     <div className="col-md-8 secondColumn">
-                        <p className="modeView"><Switch onChange={changeHandler} /> Mode</p>
+                        {/* <p className="modeView"><Switch onChange={changeHandler} /> Mode</p> */}
                         <Link to="" className="homeBack">HOME</Link>
                         {logState
                           ? <ButtonComponent type="button" changeHandler={logoutHandle} label="Log Out" classname="startButton"/>
