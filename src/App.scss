@@ -26,6 +26,9 @@ $contentAreaDark: #15364d;
 
 $modeColor : #979a9c;
 
+
+@use './style/layout.scss';
+
 body{
     margin : 0px;
     padding : 0px;
@@ -261,5 +264,3 @@ h1,h2,h3,h4,h5,h6{
         }
     }
 }
-
-@import './style/layout.scss';
