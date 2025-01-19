@@ -25,7 +25,7 @@ const ConsumerType = () => {
     },
     {
       title: 'Type Name',
-      key: 'typeName',
+      key: 'typeDisplayName',
       type: 'string',
       clickHandle: (id) => onClickHandle(id)
     },

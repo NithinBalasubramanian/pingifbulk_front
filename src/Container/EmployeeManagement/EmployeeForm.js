@@ -73,7 +73,7 @@ const EmployeeForm = () => {
     const { data } = await instance.get('/employee/fetchEmployeeType?status=1')
     if (data.success) {
       const filterOption = data.data.map((itm) => (
-        { value: itm._id, name: itm.typeName }
+        { value: itm._id, name: itm.typeDisplayName }
       ))
       setEmployeeTypeList(filterOption)
     } else {

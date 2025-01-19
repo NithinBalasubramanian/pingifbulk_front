@@ -14,6 +14,7 @@ const ConsumerForm = () => {
     middleName: '',
     lastName: '',
     mailId: '',
+    password: '',
     contact: '',
     description: ''
   }
@@ -74,7 +75,7 @@ const ConsumerForm = () => {
     const { data } = await instance.get('/consumer/fetchConsumerType?status=1')
     if (data.success) {
       const filterOption = data.data.map((itm) => (
-        { value: itm._id, name: itm.typeName }
+        { value: itm._id, name: itm.typeDisplayName }
       ))
       setConsumerType(filterOption)
     } else {
@@ -132,6 +133,13 @@ const ConsumerForm = () => {
             label="Email Id"
             defaultValue={formState.mailId}
             name="mailId" type="text" />
+            {formId === '1' && (
+              <Input
+                  changeHandle={changeHandle}
+                  label="Password"
+                  defaultValue={formState.password}
+                  name="password" type="password" /> 
+              )}
           <Input
             changeHandle={changeHandle}
             label="Contact"

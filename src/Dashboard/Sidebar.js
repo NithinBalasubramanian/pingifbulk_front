@@ -4,20 +4,19 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './index.scss'
 
-const SideBar = ({ userType }) => {
-  console.log(userType)
+const SideBar = ({ userType, type }) => {
   const menuItems = [
     {
       name: 'User Management',
       key: 'user_management',
       path: '/user-management',
-      displayState: userType
+      displayState: userType && type
     },
     {
       name: 'Consumer Management',
       key: 'consumer_management',
       path: '/consumer-management',
-      displayState: true
+      displayState: userType
     },
     {
       name: 'Employee Management',
