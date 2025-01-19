@@ -14,6 +14,7 @@ const ConsumerForm = () => {
     middleName: '',
     lastName: '',
     mailId: '',
+    password: '',
     contact: '',
     description: ''
   }
@@ -132,6 +133,11 @@ const ConsumerForm = () => {
             label="Email Id"
             defaultValue={formState.mailId}
             name="mailId" type="text" />
+          <Input
+              changeHandle={changeHandle}
+              label="Password"
+              defaultValue={formState.password}
+              name="password" type="password" />
           <Input
             changeHandle={changeHandle}
             label="Contact"
