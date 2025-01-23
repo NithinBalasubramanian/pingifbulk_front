@@ -1,6 +1,6 @@
 import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
@@ -10,17 +10,20 @@ const TeamManagement = () => {
     search: '',
     status: ''
   })
+  const history = useHistory()
 
   const columns = [
     {
       title: 'S.No',
       key: 'index',
-      type: 'number'
+      type: 'number',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Type Name',
-      key: 'typeName',
-      type: 'string'
+      key: 'teamUserName',
+      type: 'string',
+      clickHandle: (id) => onClickHandle(id)
     },
     {
       title: 'Created On',
@@ -45,6 +48,11 @@ const TeamManagement = () => {
     }
   }
 
+  const onClickHandle = (id) => {
+    history.push(`/team-management-form/${id}`)
+  }
+
+
   useEffect(() => {
     fetchData()
   }, [])
@@ -64,7 +72,7 @@ const TeamManagement = () => {
       <div className='headerLayout'>
         <div className='headerTitle'>
             <h1>Team Management</h1>
-            <Link to={'/team-management-form'}>
+            <Link to={'/team-management-form/1'}>
               <div className='routeButton'>Add Team</div>
             </Link>
         </div>

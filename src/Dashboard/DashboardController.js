@@ -93,7 +93,7 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/team-management'>
                       <TeamManagement />
                     </Route>
-                    <Route path='/team-management-form'>
+                    <Route path='/team-management-form/:id'>
                       <TeamForm />
                     </Route>
                     <Route path='/consumer-management'>
