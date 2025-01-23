@@ -25,7 +25,7 @@ const TeamType = () => {
     },
     {
       title: 'Type Name',
-      key: 'typeDisplayName',
+      key: 'typeName',
       type: 'string',
       clickHandle: (id) => onClickHandle(id)
     },

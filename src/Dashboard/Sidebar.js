@@ -24,11 +24,12 @@ const SideBar = ({ userType, type }) => {
       path: '/employee-management',
       displayState: true
     },
-    // {
-    //   name: 'Team Management',
-    //   key: 'team_management',
-    //   path: '/team-management'
-    // },
+    {
+      name: 'Team Management',
+      key: 'team_management',
+      path: '/team-management',
+      displayState: true
+    },
     {
       name: 'Single Mailer',
       key: 'mailer',
