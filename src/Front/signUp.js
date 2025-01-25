@@ -1,6 +1,7 @@
 import { Link, useHistory } from 'react-router-dom'
 import React, { useState } from 'react'
 import instance from '../Api_service'
+import { message } from 'antd'
 
 const Signup = () => {
   const initialState = {
@@ -20,8 +21,6 @@ const Signup = () => {
     })
   }
 
-  // Registers data restapi in pingifbulk infonixmedia ( codeigniter )
-
   const register = async (e) => {
     e.preventDefault()
 
@@ -35,9 +34,10 @@ const Signup = () => {
       status: 1
     }
 
-    const { data } = await instance.post('/user/addUser', datapayload)
+    const { data } = await instance.post('/client/registerUser', datapayload)
     if (data.success) {
       setFormData(initialState)
+      message.success("User created successfully, please login to experience free trial")
       history.push('/')
     } else {
       console.log('Something went wrong')
