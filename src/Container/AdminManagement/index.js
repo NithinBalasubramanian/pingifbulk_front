@@ -1,11 +1,9 @@
 import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
 import instance from '../../Api_service'
 import Table from '../../Component/sharedComponent/Table'
 
-const UserManagement = () => {
-  const history = useHistory()
+const AdminManagement = () => {
   const [tableData, setTableData] = useState([])
   const [filter, setFilter] = useState({
     search: '',
@@ -16,38 +14,32 @@ const UserManagement = () => {
     {
       title: 'S.No',
       key: 'index',
-      type: 'number',
-      clickHandle: (id) => onClickHandle(id)
+      type: 'number'
     },
     {
-      title: 'Company Name',
-      key: 'companyName',
-      type: 'string',
-      clickHandle: (id) => onClickHandle(id)
+      title: 'User Type',
+      key: 'userType',
+      type: 'string'
     },
     {
-      title: 'Email Id',
-      key: 'mailId',
-      type: 'string',
-      clickHandle: (id) => onClickHandle(id)
+      title: 'User Name',
+      key: 'userName',
+      type: 'string'
     },
     {
-      title: 'Contact',
+      title: 'User Contact',
       key: 'contact',
-      type: 'string',
-      clickHandle: (id) => onClickHandle(id)
+      type: 'string'
     },
     {
-      title: 'Created By',
-      key: 'createdBy',
-      type: 'string',
-      clickHandle: (id) => onClickHandle(id)
+      title: 'User Email',
+      key: 'userMail',
+      type: 'string'
     },
     {
       title: 'Created On',
       key: 'createdOn',
-      type: 'date',
-      clickHandle: (id) => onClickHandle(id)
+      type: 'date'
     },
     {
       title: 'Status',
@@ -57,12 +49,8 @@ const UserManagement = () => {
     }
   ]
 
-  const onClickHandle = (id) => {
-    history.push(`/user-management-form/${id}`)
-  }
-
   const changeState = async (id, status) => {
-    const { data } = await instance.get(`/client/clientStatusUpdate/${id}/${status === 1 ? 0 : 1}`)
+    const { data } = await instance.get(`/user/updateUserStatus/${id}/${status === 1 ? 0 : 1}`)
     if (data.success) {
       message.success(data?.msg)
       fetchData()
@@ -76,7 +64,7 @@ const UserManagement = () => {
   }, [])
 
   const fetchData = async () => {
-    const { data } = await instance.get(`/client/listClient?status=${filter.status}&search=${filter.search}`)
+    const { data } = await instance.get('/user/listusers')
     if (data.success) {
       setTableData(data.data)
     } else {
@@ -89,10 +77,7 @@ const UserManagement = () => {
     <div className='mainLayout'>
       <div className='headerLayout'>
         <div className='headerTitle'>
-            <h1>User Management</h1>
-            <Link to={'/user-management-form/1'}>
-              <div className='routeButton'>Add User</div>
-            </Link>
+            <h1>Admin Management</h1>
         </div>
       </div>
       <div className='contentLayout'>
@@ -102,4 +87,4 @@ const UserManagement = () => {
   )
 }
 
-export default UserManagement
+export default AdminManagement
