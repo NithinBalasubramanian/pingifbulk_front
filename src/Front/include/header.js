@@ -4,7 +4,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom'
 import ButtonComponent from '../../Component/sharedComponent/ButtonComponent'
 import { useDispatch } from 'react-redux'
 import { LogOutstate } from '../../action/index'
-import { Switch } from 'antd'
+import { Switch } from 'antd' 
 
 const Header = ({ changeHandler }) => {
   const history = useHistory()
@@ -22,6 +22,7 @@ const Header = ({ changeHandler }) => {
   }
 
   const logCheck = localStorage.getItem('userInfo')
+  const userName = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem("userInfo")).userName : ""
 
   useEffect(() => {
     setLogState(logCheck)
@@ -34,7 +35,7 @@ const Header = ({ changeHandler }) => {
                     <div className="col-md-4">
                         <h1>
                             <Link to="" className="logoTitle">
-                              Pingifbulk
+                              Pingifbulk <span className="logoLogged">{userName ? `${userName}` : ""}</span>
                             </Link>
                         </h1>
                     </div>

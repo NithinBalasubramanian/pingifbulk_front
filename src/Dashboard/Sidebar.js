@@ -7,16 +7,22 @@ import './index.scss'
 const SideBar = ({ userType, type }) => {
   const menuItems = [
     {
+      name: 'Admin Management',
+      key: 'admin_management',
+      path: '/admin-management',
+      displayState: userType === 'super_admin'
+    },
+    {
       name: 'User Management',
       key: 'user_management',
       path: '/user-management',
-      displayState: userType && type
+      displayState: userType === 'super_admin'
     },
     {
       name: 'Consumer Management',
       key: 'consumer_management',
       path: '/consumer-management',
-      displayState: userType
+      displayState: type === 2
     },
     {
       name: 'Employee Management',
@@ -28,7 +34,7 @@ const SideBar = ({ userType, type }) => {
       name: 'Team Management',
       key: 'team_management',
       path: '/team-management',
-      displayState: true
+      displayState: type === 2
     },
     {
       name: 'Single Mailer',
@@ -55,25 +61,25 @@ const SideBar = ({ userType, type }) => {
       name: 'User Types',
       key: 'user_types',
       path: '/user-type-management',
-      displayState: userType
+      displayState: userType === 'super_admin'
     },
     {
       name: 'Consumer Types',
       key: 'consumer_types',
       path: '/consumer-type-management',
-      displayState: true
+      displayState: type === 2
     },
     {
       name: 'Employee Types',
       key: 'employee_types',
       path: '/employee-type-management',
-      displayState: true
+      displayState: type === 2
     },
     {
       name: 'Team Types',
       key: 'team_types',
       path: '/team-type-management',
-      displayState: true
+      displayState: type === 2
     }
   ]
   // eslint-disable-next-line no-unused-vars

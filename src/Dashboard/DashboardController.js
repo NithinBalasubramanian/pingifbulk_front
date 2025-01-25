@@ -27,6 +27,8 @@ import TeamForm from '../Container/TeamManagement/TeamForm'
 import ConsumerForm from '../Container/ConsumerManagement/ConsumerForm'
 import BulkMailer from '../Component/Mailer/BulkMailer'
 import Mailer from '../Component/Mailer/Mailer'
+import AdminManagement from '../Container/AdminManagement'
+import UserForm from '../Container/UserManagement/UserForm'
 // import Mail from '../Component/Mailer/Mail'
 
 // eslint-disable-next-line react/prop-types
@@ -67,7 +69,7 @@ const DashboardController = ({ logState, changeLog }) => {
               </Route>
               {logCheck
                 ? <>
-                  <SideBar userType={userType === 'super_admin'} type={type === 1} />
+                  <SideBar userType={userType} type={type} />
                   <div className="mainContent">
                     <Route path="/Dashboard">
                       <Dashboard />
@@ -81,8 +83,14 @@ const DashboardController = ({ logState, changeLog }) => {
                     <Route path='/mailer'>
                       <Mailer />
                     </Route>
+                    <Route path='/admin-management'>
+                      <AdminManagement />
+                    </Route>
                     <Route path='/user-management'>
                       <UserManagement />
+                    </Route>
+                    <Route path='/user-management-form/:id'>
+                      <UserForm />
                     </Route>
                     <Route path='/employee-management'>
                       <EmployeeManagement />
